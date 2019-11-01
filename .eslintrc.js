@@ -35,7 +35,16 @@ module.exports = {
     ],
     "rules": {
         "semi": 1,
-        "no-dupe-keys": "off"
+        "no-dupe-keys": "off",
+        "no-console": "off",
+        "react/jsx-fragments": "off",
+        "indent":[2,4],
+        "react/jsx-indent":[2,4],     
+        'linebreak-style': ["off", "windows"],   
+        'react/jsx-indent-props': "off",   
+        'react/destructuring-assignment': "off",   
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/prefer-stateless-function":0,
     },
     "settings": {
         "react": {
