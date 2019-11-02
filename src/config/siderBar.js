@@ -2,7 +2,7 @@ const siderBar = [
     {
         path: '/route1',
         id: '1',
-        iconType: 'user',
+        iconType: 'windows',
         title: '路由1',
     },
     {
@@ -15,6 +15,7 @@ const siderBar = [
                 path: '/route2/asf',
                 id: '2-1',
                 iconType: 'user',
+                title: '路由2-2',
             },
         ],
     },

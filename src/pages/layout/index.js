@@ -34,7 +34,7 @@ class layout extends React.Component {
             <Layout>
                 <Sider
                     width={150}
-                    style={{ background: '#fff', textAlign: 'center' }}
+                    style={{ background: '#fff' }}
                     collapsed={this.state.collapsed}
                 >
                     <SiderBar collapsed={this.state.collapsed} />
