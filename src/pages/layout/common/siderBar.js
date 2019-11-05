@@ -15,10 +15,10 @@ export default class siderBar extends React.Component {
     constructor() {
         super();
         this.state = {};
-        // this.renderLeftNav = this.renderLeftNav.bind(this);
+        this.renderLeftNav = this.renderLeftNav.bind(this);
     }
 
-    static renderLeftNav() {
+    renderLeftNav() {
         return siderBarRoute.map((item) => {
             if (!item.children) {
                 return (
@@ -56,7 +56,7 @@ export default class siderBar extends React.Component {
                 {!collapsed ? <div style={{ textAlign: 'center', marginBottom: 20 }}>Brand</div> : ''}
                 <Menu
                     mode="inline"
-                    // defaultSelectedKeys={['2']}
+                    defaultSelectedKeys={['2-1']}
                     // defaultOpenKeys={['sub1']}
                     style={{ height: '100%', borderRight: 0 }}
                 >
