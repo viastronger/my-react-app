@@ -12,6 +12,10 @@ const {
 
 const antHeader = {
     backgroundColor: 'blueviolet',
+    lineHeight: '30px',
+    padding:'10px 20px 0',
+    height:'auto',
+    transition:'all 0.5s'
 };
 
 class layout extends React.Component {
