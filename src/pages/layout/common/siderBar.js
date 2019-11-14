@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import { Menu, Icon } from 'antd';
-import { createHashHistory, createBrowserHistory } from "history";
+import { history } from '../../../history'
 import PropTypes from 'prop-types';
 import siderBarRoute from '../../../config/siderBar';
+import { connect } from 'react-redux'
 
 const { SubMenu } = Menu;
 const brandIcon = {
@@ -11,9 +12,9 @@ const brandIcon = {
     margin: '20px auto',
 };
 
-const history = createBrowserHistory();
 
-export default class siderBar extends React.Component {
+
+class siderBar extends React.Component {
     constructor() {
         super();
         this.state = {};
@@ -22,15 +23,15 @@ export default class siderBar extends React.Component {
     }
 
     changeRoute(e) {
-        console.log(e)
         history.push(`/${e.key}`)
+        this.props.addTags(e)
     }
 
     renderLeftNav() {
         return siderBarRoute.map((item) => {
             if (!item.children) {
                 return (
-                    <Menu.Item key={item.path ? item.path : item.id}>
+                    <Menu.Item key={item.path ? item.path : item.id} title={item.title}>
                         <Icon type={item.iconType} />
                         <span>{item.title}</span>
                     </Menu.Item>
@@ -48,7 +49,9 @@ export default class siderBar extends React.Component {
                 >
                     {
                         item.children.map((childItem) => (
-                            <Menu.Item key={childItem.path ? childItem.path : childItem.id}>{childItem.title}</Menu.Item>
+                            <Menu.Item key={childItem.path ? childItem.path : childItem.id} title={item.title}>
+                                {childItem.title}
+                            </Menu.Item>
                         ))
                     }
                 </SubMenu>
@@ -84,3 +87,22 @@ siderBar.propTypes = {
 siderBar.defaultProps = {
     collapsed: true,
 };
+
+function mapStateToProps(state) {
+    return {
+
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        addTags(route) {
+            dispatch({
+                type: 'ADD_TAGS',
+                payload: route
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(siderBar)

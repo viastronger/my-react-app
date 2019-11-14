@@ -1,42 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon, Breadcrumb, Tag, Input } from 'antd';
+import { history } from '../../../history'
 import { TweenOneGroup } from 'rc-tween-one';
 import { Scrollbars } from 'react-custom-scrollbars';
+import { connect } from 'react-redux'
 
 const breadcrumb = {
     display: 'inline-block',
     marginLeft: 20,
     color: 'white',
 };
-
-export default class Head extends React.Component {
+history.listen((e) => {
+    console.log(e)
+})
+// const { CheckableTag } = Tag;
+class Head extends React.Component {
     state = {
-        tags: ['Tag 1', 'Tag 2', 'Tag 3'],
         inputVisible: false,
         inputValue: '',
     };
 
+    judgePathName = (tag) => {
+        return history.location.pathname.slice(1) === tag.key ? true : false
+    }
+
     handleClose = removedTag => {
-        const tags = this.state.tags.filter(tag => tag !== removedTag);
-        console.log(tags);
-        this.setState({ tags });
+        const { tags, removeTags } = this.props
+        const newTags = tags.filter(tag => tag.key !== removedTag.key);
+        if (this.judgePathName(removedTag)) {
+            // 如果删除的是当前路由的tag，那么选tag数组中最后一个
+            history.push(`/${newTags[newTags.length - 1].key}`)
+        }
+        removeTags(newTags)
     };
 
     forMap = tag => {
+        const active = this.judgePathName(tag)
         const tagElem = (
             <Tag
                 closable
+                className={active ? 'active' : ''}
                 onClose={e => {
                     e.preventDefault();
                     this.handleClose(tag);
                 }}
             >
-                {tag}
+                {tag.key}
             </Tag>
         );
         return (
-            <span key={tag} style={{ display: 'inline-block' }}>
+            <span
+                key={tag.key}
+                style={{ display: 'inline-block' }}>
                 {tagElem}
             </span>
         );
@@ -50,9 +66,7 @@ export default class Head extends React.Component {
 
         };
         return (
-            <div
-                style={{ ...style, ...thumbStyle }}
-                {...props} />
+            <div style={{ ...style, ...thumbStyle }} {...props} />
         );
     }
     renderTrackHorizontal({ style, ...props }) {
@@ -63,14 +77,15 @@ export default class Head extends React.Component {
             bottom: '2px',
         };
         return (
-            <div
-                style={{ ...style, ...trackStyle }}
-                {...props} />
+            <div style={{ ...style, ...trackStyle }} {...props} />
         );
     }
+    componentWillReceiveProps() {
+        console.log('will')
+    }
     render() {
-        const { toggleCollapsed, collapsed } = this.props;
-        const { tags, inputVisible, inputValue } = this.state;
+        const { toggleCollapsed, collapsed, tags } = this.props;
+        // const { tags, inputVisible, inputValue } = this.state;
         const tagChild = tags.map(this.forMap);
         return (
             <div>
@@ -87,31 +102,33 @@ export default class Head extends React.Component {
                     </Breadcrumb.Item>
                     <Breadcrumb.Item style={{ color: 'rgba(255,255,255,0.8)' }}>An Application</Breadcrumb.Item>
                 </Breadcrumb>
-                <Scrollbars
-                    className='scroll-bar'
-                    style={{ height: 40, whiteSpace: 'nowrap', cursor: 'pointer' }}
-                    renderTrackHorizontal={this.renderTrackHorizontal}
-                    renderThumbHorizontal={this.renderThumbHorizontal}
-                    autoHide
-                    autoHideTimeout={1000}
-                    autoHideDuration={200}
-                >
-                    <TweenOneGroup
-                        enter={{
-                            scale: 0.8,
-                            opacity: 0,
-                            type: 'from',
-                            duration: 100,
-                            onComplete: e => {
-                                e.target.style = '';
-                            },
-                        }}
-                        leave={{ opacity: 0, width: 0, scale: 0, duration: 200 }}
-                        appear={false}
+                {
+                    tagChild.length > 0 ? <Scrollbars
+                        className='scroll-bar'
+                        style={{ height: 40, whiteSpace: 'nowrap', cursor: 'pointer' }}
+                        renderTrackHorizontal={this.renderTrackHorizontal}
+                        renderThumbHorizontal={this.renderThumbHorizontal}
+                        autoHide
+                        autoHideTimeout={1000}
+                        autoHideDuration={200}
                     >
-                        {tagChild}
-                    </TweenOneGroup>
-                </Scrollbars>
+                        <TweenOneGroup
+                            enter={{
+                                scale: 0.8,
+                                opacity: 0,
+                                type: 'from',
+                                duration: 100,
+                                onComplete: e => {
+                                    e.target.style = '';
+                                },
+                            }}
+                            leave={{ opacity: 0, width: 0, scale: 0, duration: 200 }}
+                            appear={false}
+                        >
+                            {tagChild}
+                        </TweenOneGroup>
+                    </Scrollbars> : ''
+                }
 
             </div>
 
@@ -128,3 +145,22 @@ Head.propTypes = {
 Head.defaultProps = {
     collapsed: true,
 };
+
+function mapStateToProps(state) {
+    return {
+        tags: state.tagsView.tags
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        removeTags(newTags) {
+            dispatch({
+                type: 'REMOVE_TAGS',
+                payload: newTags
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Head)

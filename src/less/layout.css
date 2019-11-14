@@ -2,3 +2,6 @@
     height: 100%;
 }
 
+.ant-tag.active {
+    color: tomato;
+}
