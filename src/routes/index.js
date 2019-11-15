@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import { Route, Switch, Router } from 'react-router-dom';
-import layout from '../pages/layout';
+import Layout from '../pages/layout';
 import menu from '../pages/menu'
 import { history } from '../history'
 
@@ -9,9 +9,28 @@ export default class routes extends Component {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route path="/" component={layout} >
+                    <Route path="/" render={props => (
+                        <Layout>
+                            <Switch>
+                                <Route path="/echarts" exact component={menu.echarts} />
+                                {/* <Route path="/" exact component={lazyLoad(Home)} />
+                                        <Route path="/home" component={lazyLoad(Home)} />
+                                        <Route path="/test" component={lazyLoad(Test)} /> */}
+                                {/* <Route path="/" exact component={Home} /> */}
+                                {/* <Route path="/route3" component={Home} /> */}
+                                {/* <Route path="/test" component={Test} /> */}
+                                {/* <Route render={() => <Redirect to="/" />} /> */}
+                            </Switch>
+                        </Layout>
+                    )}
+                    />
+                    {/* <Route render={() => <Redirect to="/" />} /> */}
+                    {/* <layout>
+                        <Route path="/" exact component={layout} />
                         <Route path="/route3" component={menu.echarts} />
-                    </Route>
+                    </layout> */}
+                    {/* <Route path="/login" component={base.login} /> */}
+                    {/* <Route path="*" component={base.notfound} /> */}
                     {/* <Route path="/LoginPage" component={LoginPage} /> */}
                     {/* <Route path="/SuccessPage" component={SuccessPage} /> */}
                     {/* <Route path="/errorPage" component={errorPage} /> */}

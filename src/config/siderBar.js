@@ -6,7 +6,6 @@ const siderBar = [
         title: '路由1',
     },
     {
-        // path: '/route2',
         id: '2',
         iconType: 'user',
         title: '路由2',
@@ -20,10 +19,10 @@ const siderBar = [
         ],
     },
     {
-        path: 'route3',
+        path: 'echarts',
         id: '3',
         iconType: 'area-chart',
-        title: '路由3',
+        title: '图表',
     },
     {
         path: 'route4',

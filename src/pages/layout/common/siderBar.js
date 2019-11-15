@@ -6,13 +6,12 @@ import siderBarRoute from '../../../config/siderBar';
 import { connect } from 'react-redux'
 
 const { SubMenu } = Menu;
+
 const brandIcon = {
     fontSize: 40,
     display: 'block',
     margin: '20px auto',
 };
-
-
 
 class siderBar extends React.Component {
     constructor() {
