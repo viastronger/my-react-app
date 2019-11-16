@@ -1,12 +1,13 @@
 const siderBar = [
     {
-        path: 'route1',
+        path: 'home',
         id: '1',
         iconType: 'windows',
-        title: '路由1',
+        title: '首页',
     },
     {
         id: '2',
+        path: 'route2',
         iconType: 'user',
         title: '路由2',
         children: [

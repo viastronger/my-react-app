@@ -1,15 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { history } from '../../../history'
 import { connect } from 'react-redux'
 import { Tag } from 'antd';
 import { TweenOneGroup } from 'rc-tween-one';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-history.listen((e) => {
-    console.log(e)
-})
 
 class Tags extends React.Component {
+
+    forceUpdateMethod = () => {
+        this.forceUpdate();
+    }
+
+    componentDidMount() {
+        history.listen((e) => {
+            this.forceUpdateMethod && this.forceUpdateMethod()
+        })
+    }
+
+    componentWillUnmount() {
+        this.forceUpdateMethod = null
+    }
+
     judgePathName = (tag) => {
         return history.location.pathname.slice(1) === tag.key ? true : false
     }
@@ -24,17 +37,16 @@ class Tags extends React.Component {
         removeTags(newTags)
     };
 
-    tagClick = clickTag => {
-        history.push(`/${clickTag.key}`)
-        this.render()
-    }
+    // tagClick = clickTag => {
+    //     history.push(`/${clickTag.key}`)
+    // }
 
     forMap = tag => {
         const active = this.judgePathName(tag)
         const tagElem = (
             <Tag
                 closable
-                onClick={() => this.tagClick(tag)}
+                // onClick={() => this.tagClick(tag)}
                 style={{ cursor: 'pointer' }}
                 className={active ? 'active' : ''}
                 onClose={e => {
@@ -42,14 +54,14 @@ class Tags extends React.Component {
                     this.handleClose(tag);
                 }}
             >
-                {tag.key}
+                {tag.item.props.name}
             </Tag>
         );
         return (
             <span
                 key={tag.key}
                 style={{ display: 'inline-block' }}>
-                {tagElem}
+                <Link to={`/${tag.key}`}>{tagElem}</Link>
             </span>
         );
     };

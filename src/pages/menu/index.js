@@ -1,8 +1,8 @@
 
 import echarts from './echarts'
-// import editor from './editor'
+import home from './home'
 
 export default {
-  echarts, 
-//   editor,
+  echarts,
+  home,
 }

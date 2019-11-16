@@ -30,7 +30,10 @@ class siderBar extends React.Component {
         return siderBarRoute.map((item) => {
             if (!item.children) {
                 return (
-                    <Menu.Item key={item.path ? item.path : item.id} title={item.title}>
+                    <Menu.Item
+                        key={item.path ? item.path : item.id}
+                        name={item.title}
+                    >
                         <Icon type={item.iconType} />
                         <span>{item.title}</span>
                     </Menu.Item>
@@ -38,7 +41,8 @@ class siderBar extends React.Component {
             }
             return (
                 <SubMenu
-                    key={item.id}
+                    key={item.path ? item.path : item.id}
+                    name={item.title}
                     title={(
                         <span>
                             <Icon type={item.iconType} />
@@ -48,7 +52,9 @@ class siderBar extends React.Component {
                 >
                     {
                         item.children.map((childItem) => (
-                            <Menu.Item key={childItem.path ? childItem.path : childItem.id} title={item.title}>
+                            <Menu.Item
+                                key={childItem.path ? childItem.path : childItem.id}
+                                name={childItem.title}>
                                 {childItem.title}
                             </Menu.Item>
                         ))
@@ -67,9 +73,9 @@ class siderBar extends React.Component {
                 <Menu
                     onClick={this.changeRoute}
                     mode="inline"
-                    defaultSelectedKeys={['2-1']}
+                    defaultSelectedKeys={['route1']}
                     // defaultOpenKeys={['sub1']}
-                    style={{ height: '100%', borderRight: 0 }}
+                    style={{ borderRight: 0 }}
                 >
                     {this.renderLeftNav()}
                 </Menu>

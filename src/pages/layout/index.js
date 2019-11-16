@@ -13,10 +13,10 @@ class layout extends React.Component {
     constructor() {
         super();
         this.state = {
-            collapsed: true,
+            collapsed: false,
         };
         this.toggleCollapsed = this.toggleCollapsed.bind(this);
-       
+
     }
 
     toggleCollapsed = () => {
@@ -31,25 +31,39 @@ class layout extends React.Component {
             <Layout>
                 <Sider
                     width={150}
-                    style={{ background: '#fff' }}
+                    style={{
+                        background: '#fff',
+                        overflowY: 'auto',
+                        height: '100vh',
+                        position: 'fixed',
+                        left: 0,
+                    }}
                     collapsed={this.state.collapsed}
                 >
                     <SiderBar collapsed={this.state.collapsed} />
                 </Sider>
                 <Layout>
-                    <Header 
-                        toggleCollapsed={this.toggleCollapsed}  
-                        collapsed={this.state.collapsed} />
-                    {children}
+                    <Header
+                        toggleCollapsed={this.toggleCollapsed}
+                        collapsed={this.state.collapsed}
+                    />
+                    <div style={{
+                        padding: '0 20px 20px',
+                        marginTop: 90,
+                        marginLeft: 150,
+                        minHeight: 'calc(100vh - 90px)'
+                    }}>
+                        {children}
+                    </div>
                 </Layout>
-            </Layout>
+            </Layout >
         );
     }
 }
 
 function mapStateToProps(state) {
     return {
-       
+
     }
 }
 

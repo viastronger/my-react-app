@@ -2,6 +2,86 @@
     height: 100%;
 }
 
+.ant-tag {
+    border: none;
+}
+
 .ant-tag.active {
-    color: tomato;
+    color: white;
+    background-color: tomato;
+}
+
+.ant-tag:hover {
+    opacity: 1;
+}
+
+.ant-menu-inline .ant-menu-item, .ant-menu-inline .ant-menu-submenu-title {
+    width: 100%;
+}
+
+.gutter-box {
+    padding: 5px 0;
+}
+
+#components-layout-demo-custom-trigger .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#components-layout-demo-custom-trigger .trigger:hover {
+    color: #1890ff;
+}
+
+#components-layout-demo-custom-trigger .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+}
+
+/* ****************/
+
+.appAppear-appear {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.appAppear-appear.appAppear-appear-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: 500ms ease-out;
+}
+
+/*设置进场前透明度为0，放缩为0*/
+
+.fade-enter {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+/*设置进场过程中 透明度为1，放缩为1，放缩的位置为左上角，持续时间为500ms，时间曲是ease-out */
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    /* transform-origin: top left; */
+    transition: 800ms ease-out;
+}
+
+/*设置退场前透明度为1，放缩为1*/
+
+.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/*设置退场过程中 透明度为0，放缩为0，放缩的位置默认是中间，所以不设置也可以，
+  持续时间为500ms，时间曲是ease-out */
+
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: 100ms ease-out;
 }

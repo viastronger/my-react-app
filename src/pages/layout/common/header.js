@@ -1,19 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Button, Icon, Breadcrumb} from 'antd';
-
+// import { history } from '../../../history'
+import { Layout, Button, Icon } from 'antd';
 import { connect } from 'react-redux'
 import Tags from './tags'
+import Breadcrumb from './breadcrumb'
+
 
 const {
     Header,
 } = Layout;
-
-const breadcrumb = {
-    display: 'inline-block',
-    marginLeft: 20,
-    color: 'white',
-};
 
 let antHeader = {
     backgroundColor: 'blueviolet',
@@ -23,14 +19,10 @@ let antHeader = {
     transition: 'all 0.5s'
 };
 
-
 class Head extends React.Component {
     constructor() {
         super();
-        this.state = {
-            inputVisible: false,
-            inputValue: '',
-        };
+        this.state = {};
         this.changeHeight = this.changeHeight.bind(this);
     }
 
@@ -39,26 +31,26 @@ class Head extends React.Component {
         antHeaderStyle.height = tags.length > 0 ? '80px' : '50px'
         return antHeaderStyle
     }
+
     render() {
         const { toggleCollapsed, collapsed, tags } = this.props;
         antHeader = this.changeHeight(tags)
         return (
-            <Header style={antHeader}>
+            <Header
+                style={{
+                    position: 'fixed',
+                    zIndex: 1,
+                    left: 150,
+                    right: 0,
+                    ...antHeader
+                }}
+            >
                 <Button type="primary" onClick={toggleCollapsed} size="small">
                     <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
                 </Button>
-                <Breadcrumb style={breadcrumb}>
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>
-                        <a href="javascript" style={{ color: 'white' }}>Application Center</a>
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item>
-                        <a href="/" style={{ color: 'white' }}>Application List</a>
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item style={{ color: 'rgba(255,255,255,0.8)' }}>An Application</Breadcrumb.Item>
-                </Breadcrumb>
+                <Breadcrumb />
                 {
-                    tags.length > 0 ? <Tags/> : ''
+                    tags.length > 0 ? <Tags /> : null
                 }
 
             </Header>
@@ -74,7 +66,7 @@ Head.propTypes = {
 };
 
 Head.defaultProps = {
-    collapsed: true,
+    collapsed: false,
 };
 
 function mapStateToProps(state) {
@@ -85,7 +77,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-       
+
     }
 }
 
