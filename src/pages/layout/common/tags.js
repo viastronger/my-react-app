@@ -28,25 +28,22 @@ class Tags extends React.Component {
     }
 
     handleClose = removedTag => {
+        console.log(removedTag)
         const { tags, removeTags } = this.props
         const newTags = tags.filter(tag => tag.key !== removedTag.key);
         if (this.judgePathName(removedTag)) {
             // 如果删除的是当前路由的tag，那么选tag数组中最后一个
             newTags.length > 0 ? history.push(`/${newTags[newTags.length - 1].key}`) : history.push(`/`)
         }
+
         removeTags(newTags)
     };
-
-    // tagClick = clickTag => {
-    //     history.push(`/${clickTag.key}`)
-    // }
 
     forMap = tag => {
         const active = this.judgePathName(tag)
         const tagElem = (
             <Tag
                 closable
-                // onClick={() => this.tagClick(tag)}
                 style={{ cursor: 'pointer' }}
                 className={active ? 'active' : ''}
                 onClose={e => {

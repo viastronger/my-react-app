@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-import { Route, Switch, Router } from 'react-router-dom';
-import Layout from '../pages/layout';
-import menu from '../pages/menu'
-import login from '../pages/login'
+import { Route, Switch, Router, Redirect } from 'react-router-dom';
 import { history } from '../history'
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { connect } from 'react-redux'
+import AuthorizedRoute from '../pages/AuthorizedRoute';
+import Layout from '../pages/layout';
+// import menu from '../pages/menu'
+import login from '../pages/login'
+import { isLoginMethod } from '../config/permission'
 
-export default class routes extends Component {
+class routes extends Component {
+
     render() {
+        const { isLogin } = this.props
         return (
             <div>
                 <Router history={history}>
                     <Switch>
-                        <Route path="/login" component={login}></Route>
-                        <Route path="/" render={({ history, location, match }) => (
+                        <Route path="/login" component={login} onEnter={isLoginMethod(isLogin)} ></Route>
+                        <AuthorizedRoute path="/" component={Layout} ></AuthorizedRoute>
+                        <Redirect to='/login'></Redirect>
+                        {/* <Route path="/" render={({ history, location, match }) => (
                             <Layout history={history} location={location} match={match}>
                                 <TransitionGroup>
                                     <CSSTransition
@@ -22,10 +29,6 @@ export default class routes extends Component {
                                         timeout={800}
                                     >
                                         <div>
-                                            {/* Switch 加了location={location}这个，
-                                                就避免了每次路由切换时出现两个同样的组件的问题
-                                                （并不太清楚原因-_-!!估计跟key有关系，可能相当于加了一个key） 
-                                             */}
                                             <Switch location={location}>
                                                 <Route path="/echarts" component={menu.echarts} />
                                                 <Route path="/home" component={menu.home} />
@@ -34,10 +37,18 @@ export default class routes extends Component {
                                     </CSSTransition>
                                 </TransitionGroup>
                             </Layout>
-                        )} />
+                        )} /> */}
                     </Switch>
                 </Router>
             </div>
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        isLogin: state.setting.isLogin
+    }
+}
+
+export default connect(mapStateToProps, null)(routes)

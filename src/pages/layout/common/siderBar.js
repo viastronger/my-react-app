@@ -1,10 +1,13 @@
 import React, { Fragment } from 'react';
-import { Menu, Icon } from 'antd';
+import { Menu, Icon, Layout } from 'antd';
 import { history } from '../../../history'
 import PropTypes from 'prop-types';
 import siderBarRoute from '../../../config/siderBar';
 import { connect } from 'react-redux'
 
+const {
+    Sider,
+} = Layout;
 const { SubMenu } = Menu;
 
 const brandIcon = {
@@ -24,6 +27,8 @@ class siderBar extends React.Component {
     changeRoute(e) {
         history.push(`/${e.key}`)
         this.props.addTags(e)
+        // 移动端，点击侧边栏后，隐藏侧边栏
+        this.props.phoneCollapsed && this.props.toggleCollapsed()
     }
 
     renderLeftNav() {
@@ -65,22 +70,42 @@ class siderBar extends React.Component {
     }
 
     render() {
-        const { collapsed } = this.props;
+        const { collapsed, phoneCollapsed, isMobile, toggleCollapsed } = this.props;
         return (
             <Fragment>
-                <Icon type="twitter" style={brandIcon} />
-                {!collapsed ? <div style={{ textAlign: 'center', marginBottom: 20 }}>Brand</div> : ''}
-                <Menu
-                    onClick={this.changeRoute}
-                    mode="inline"
-                    defaultSelectedKeys={['route1']}
-                    // defaultOpenKeys={['sub1']}
-                    style={{ borderRight: 0 }}
+                {
+                    isMobile ? (
+                        <div className={[
+                            "mask",
+                            phoneCollapsed ? 'show' : null].join(' ')}
+                            onClick={toggleCollapsed}>
+                        </div>
+                    ) : null
+                }
+                <Sider
+                    width={150}
+                    trigger={null}
+                    collapsible
+                    className={[
+                        "sider-bar",
+                        isMobile ? "hide" : null,
+                        phoneCollapsed ? "phoneCollapsed" : null].join(' ')
+                    }
+                    collapsed={!isMobile ? collapsed : false}
                 >
-                    {this.renderLeftNav()}
-                </Menu>
+                    <Icon type="twitter" style={brandIcon} />
+                    {!collapsed ? <div style={{ textAlign: 'center', marginBottom: 20 }}>Brand</div> : ''}
+                    <Menu
+                        onClick={this.changeRoute}
+                        mode="inline"
+                        defaultSelectedKeys={['route1']}
+                        // defaultOpenKeys={['sub1']}
+                        style={{ borderRight: 0 }}
+                    >
+                        {this.renderLeftNav()}
+                    </Menu>
+                </Sider>
             </Fragment>
-
         );
     }
 }
@@ -90,12 +115,12 @@ siderBar.propTypes = {
 };
 
 siderBar.defaultProps = {
-    collapsed: true,
+    collapsed: false,
 };
 
 function mapStateToProps(state) {
     return {
-
+        isMobile: state.setting.isMobile,
     }
 }
 

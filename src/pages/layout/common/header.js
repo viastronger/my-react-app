@@ -40,8 +40,7 @@ class Head extends React.Component {
                 style={{
                     position: 'fixed',
                     zIndex: 1,
-                    left: 150,
-                    right: 0,
+                    width: '100%',
                     ...antHeader
                 }}
             >
@@ -71,7 +70,7 @@ Head.defaultProps = {
 
 function mapStateToProps(state) {
     return {
-        tags: state.tagsView.tags
+        tags: state.tagsView.tags,
     }
 }
 
