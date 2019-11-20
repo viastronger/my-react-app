@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Route, Switch, Router, Redirect } from 'react-router-dom';
+import { Route, Switch, Router } from 'react-router-dom';
 import { history } from '../history'
 // import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { connect } from 'react-redux'
+import { isLoginMethod } from '../config/permission'
 import AuthorizedRoute from '../pages/AuthorizedRoute';
 import Layout from '../pages/layout';
 // import menu from '../pages/menu'
 import login from '../pages/login'
-import { isLoginMethod } from '../config/permission'
 
 class routes extends Component {
 
@@ -17,9 +17,8 @@ class routes extends Component {
             <div>
                 <Router history={history}>
                     <Switch>
-                        <Route path="/login" component={login} onEnter={isLoginMethod(isLogin)} ></Route>
+                        <Route path="/login" component={login} render={isLoginMethod(isLogin)} ></Route>
                         <AuthorizedRoute path="/" component={Layout} ></AuthorizedRoute>
-                        <Redirect to='/login'></Redirect>
                         {/* <Route path="/" render={({ history, location, match }) => (
                             <Layout history={history} location={location} match={match}>
                                 <TransitionGroup>

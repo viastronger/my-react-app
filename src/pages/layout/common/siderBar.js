@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import siderBarRoute from '../../../config/siderBar';
 import { connect } from 'react-redux'
 
+
 const {
     Sider,
 } = Layout;
@@ -19,9 +20,47 @@ const brandIcon = {
 class siderBar extends React.Component {
     constructor() {
         super();
-        this.state = {};
+        this.state = {
+            pathname: '',
+            hasPathname: false,
+        };
         this.renderLeftNav = this.renderLeftNav.bind(this);
         this.changeRoute = this.changeRoute.bind(this);
+        this.setPathname = this.setPathname.bind(this);
+    }
+
+    componentDidMount() {
+        history.listen(() => {
+            this.setPathname && this.setPathname()
+        })
+    }
+
+    componentWillUnmount() {
+        this.setPathname = null
+    }
+
+    setPathname(childrenRouter) {
+        const routeArr = childrenRouter ? childrenRouter : siderBarRoute
+        const currentPath = history.location.pathname.slice(1)
+        let flag = false
+        routeArr.forEach(item => {
+            if(!flag){
+                if (currentPath === item.path) {
+                    flag = true
+                    return
+                }
+                if (item.children) {
+                    flag = this.setPathname(item.children)
+                }
+            }            
+        })
+
+        if (flag) {
+            this.setState({
+                pathname: currentPath
+            })
+        }
+        return flag
     }
 
     changeRoute(e) {
@@ -31,8 +70,9 @@ class siderBar extends React.Component {
         this.props.phoneCollapsed && this.props.toggleCollapsed()
     }
 
-    renderLeftNav() {
-        return siderBarRoute.map((item) => {
+    renderLeftNav(childrenRouter) {
+        const routeArr = childrenRouter ? childrenRouter : siderBarRoute
+        return routeArr.map((item) => {
             if (!item.children) {
                 return (
                     <Menu.Item
@@ -56,13 +96,29 @@ class siderBar extends React.Component {
                     )}
                 >
                     {
-                        item.children.map((childItem) => (
-                            <Menu.Item
+                        item.children.map((childItem) => {
+                            if (childItem.children) {
+                                return (
+                                    <SubMenu
+                                        key={childItem.path ? childItem.path : childItem.id}
+                                        name={childItem.title}
+                                        title={(
+                                            <span>
+                                                <Icon type={childItem.iconType} />
+                                                <span>{childItem.title}</span>
+                                            </span>
+                                        )}
+                                    >
+                                        {this.renderLeftNav(childItem.children)}
+                                    </SubMenu>
+                                )
+                            }
+                            return <Menu.Item
                                 key={childItem.path ? childItem.path : childItem.id}
                                 name={childItem.title}>
                                 {childItem.title}
                             </Menu.Item>
-                        ))
+                        })
                     }
                 </SubMenu>
             );
@@ -70,7 +126,7 @@ class siderBar extends React.Component {
     }
 
     render() {
-        const { collapsed, phoneCollapsed, isMobile, toggleCollapsed } = this.props;
+        const { collapsed, phoneCollapsed, isMobile, toggleCollapsed, siderWidth } = this.props;
         return (
             <Fragment>
                 {
@@ -83,7 +139,7 @@ class siderBar extends React.Component {
                     ) : null
                 }
                 <Sider
-                    width={150}
+                    width={siderWidth}
                     trigger={null}
                     collapsible
                     className={[
@@ -98,7 +154,7 @@ class siderBar extends React.Component {
                     <Menu
                         onClick={this.changeRoute}
                         mode="inline"
-                        defaultSelectedKeys={['route1']}
+                        selectedKeys={[this.state.pathname]}
                         // defaultOpenKeys={['sub1']}
                         style={{ borderRight: 0 }}
                     >
@@ -121,6 +177,7 @@ siderBar.defaultProps = {
 function mapStateToProps(state) {
     return {
         isMobile: state.setting.isMobile,
+        siderWidth: state.setting.siderWidth,
     }
 }
 

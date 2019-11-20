@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 import { connect } from 'react-redux'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import menu from '../menu'
 import SiderBar from './common/siderBar';
@@ -42,7 +42,7 @@ class layout extends React.Component {
     }
 
     render() {
-        const { location } = this.props;
+        const { location, siderWidth } = this.props;
         return (
             <Layout>
                 <SiderBar
@@ -50,7 +50,9 @@ class layout extends React.Component {
                     phoneCollapsed={this.state.phoneCollapsed}
                     toggleCollapsed={this.toggleCollapsed}
                 />
-                <Layout className={["container-layout", this.state.collapsed ? "collapsed" : null].join(' ')}>
+                <Layout
+                    style={{ marginLeft: siderWidth }}
+                    className={["container-layout", this.state.collapsed ? "collapsed" : null].join(' ')}>
                     <Header
                         toggleCollapsed={this.toggleCollapsed}
                         collapsed={this.state.collapsed}
@@ -67,8 +69,9 @@ class layout extends React.Component {
                                         （并不太清楚原因-_-!!估计跟key有关系，可能相当于加了一个key） 
                                     */}
                                     <Switch location={location}>
-                                        <Route path="/echarts" component={menu.echarts} />
                                         <Route path="/home" component={menu.home} />
+                                        <Route path="/echarts" component={menu.echarts} />
+                                        <Redirect to='/home'></Redirect>
                                     </Switch>
                                 </div>
                             </CSSTransition>
@@ -85,6 +88,7 @@ function mapStateToProps(state) {
     return {
         width: state.setting.width,
         isMobile: state.setting.isMobile,
+        siderWidth: state.setting.siderWidth,
     }
 }
 

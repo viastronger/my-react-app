@@ -4,6 +4,7 @@ const initalState = {
     pending: false,
     isLogin: true,
     width: 992,
+    siderWidth: 150,
 }
 
 const toggleDevice = (state, action) => {
@@ -28,6 +29,7 @@ export default (state = initalState, action) => {
     return {
         isMobile: toggleDevice(state, action),
         width: state.width,
+        siderWidth: state.siderWidth,
         pending: state.pending,
         isLogin: toggleLogin(state, action),
     }

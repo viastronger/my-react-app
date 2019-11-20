@@ -50,13 +50,12 @@
 /* ************ */
 
 .container-layout {
-    margin-left: 150px;
     transition: all 0.2s;
 }
 
 @media screen and (min-width: 992px) {
     .ant-layout.collapsed {
-        margin-left: 80px;
+        margin-left: 80px !important;
     }
 }
 

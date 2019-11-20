@@ -16,6 +16,32 @@ const siderBar = [
                 id: '2-1',
                 iconType: 'user',
                 title: '路由2-2',
+                children: [
+                    {
+                        path: 'route2/asf/sanji1',
+                        id: '2-1-1',
+                        iconType: 'user',
+                        title: '路由2-2-1',
+                    },
+                    {
+                        path: 'route2/asf/sanji2',
+                        id: '2-1-2',
+                        iconType: 'user',
+                        title: '路由2-2-1',
+                    },
+                    {
+                        path: 'route2/asf/sanji3',
+                        id: '2-1-3',
+                        iconType: 'user',
+                        title: '路由2-2-1',
+                    },
+                    {
+                        path: 'route2/asf/sanji4',
+                        id: '2-1-4',
+                        iconType: 'user',
+                        title: '路由2-2-1',
+                    },
+                ],
             },
         ],
     },
