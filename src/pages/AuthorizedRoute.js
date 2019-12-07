@@ -10,11 +10,9 @@ class AuthorizedRoute extends React.Component {
         } = this.props
         return (
             <Route
-                // eslint-disable-next-line react/jsx-props-no-spreading
                 {...rest}
                 render={(props) => {
                     if (pending) return <div>Loading...</div>
-                    // eslint-disable-next-line react/jsx-props-no-spreading
                     return isLogin ? <Component {...props} /> : <Redirect to="/login" />
                 }}
             />
@@ -23,8 +21,7 @@ class AuthorizedRoute extends React.Component {
 }
 
 AuthorizedRoute.propTypes = {
-    // eslint-disable-next-line react/forbid-prop-types
-    component: PropTypes.any.isRequired,
+    component: PropTypes.objectOf(PropTypes.any).isRequired,
     pending: PropTypes.bool.isRequired,
     isLogin: PropTypes.bool.isRequired,
 }

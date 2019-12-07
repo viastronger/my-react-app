@@ -37,6 +37,7 @@ module.exports = {
         "semi": ["error", "never"],
         "no-dupe-keys": "off",
         "no-console": "off",
+        "no-shadow": "off",
         "func-names": "off",
         "no-unused-vars": "off",
         "no-unused-expressions": "off",

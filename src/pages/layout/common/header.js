@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { history } from '../../../history'
 import { Layout, Button, Icon } from 'antd'
 import { connect } from 'react-redux'
 import Tags from './tags'
@@ -62,8 +61,7 @@ class Head extends React.Component {
 Head.propTypes = {
     toggleCollapsed: PropTypes.func.isRequired,
     collapsed: PropTypes.bool,
-    // eslint-disable-next-line react/forbid-prop-types
-    tags: PropTypes.array.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 Head.defaultProps = {

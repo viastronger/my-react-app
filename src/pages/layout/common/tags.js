@@ -26,7 +26,6 @@ class Tags extends React.Component {
     judgePathName = (tag) => (history.location.pathname.slice(1) === tag.key)
 
     handleClose = (removedTag) => {
-        console.log(removedTag)
         const { tags, removeTags } = this.props
         const newTags = tags.filter((tag) => tag.key !== removedTag.key)
         if (this.judgePathName(removedTag)) {
@@ -71,7 +70,6 @@ class Tags extends React.Component {
 
         }
         return (
-            // eslint-disable-next-line react/jsx-props-no-spreading
             <div style={{ ...style, ...thumbStyle }} {...props} />
         )
     }
@@ -84,7 +82,6 @@ class Tags extends React.Component {
             bottom: '2px',
         }
         return (
-            // eslint-disable-next-line react/jsx-props-no-spreading
             <div style={{ ...style, ...trackStyle }} {...props} />
         )
     }
@@ -144,8 +141,7 @@ function mapDispatchToProps(dispatch) {
 
 
 Tags.propTypes = {
-    // eslint-disable-next-line react/forbid-prop-types
-    tags: PropTypes.array.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.object).isRequired,
     removeTags: PropTypes.func.isRequired,
 }
 
