@@ -34,7 +34,7 @@ module.exports = {
         "import"
     ],
     "rules": {
-        "semi": 1,
+        "semi": ["error", "never"],
         "no-dupe-keys": "off",
         "no-console": "off",
         "no-plusplus": "off",
@@ -44,7 +44,7 @@ module.exports = {
         "class-methods-use-this": "off",
         "no-use-before-define": "off",
         "eol-last": "off",
-        "max-len": "300",
+        "max-len": ["error", { "code": 300 }],
         "indent":[2,4],
         "react/jsx-indent":[2,4],     
         'linebreak-style': ["off", "windows"],   
