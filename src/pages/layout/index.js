@@ -1,29 +1,41 @@
-import React from 'react';
-import { Layout } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Layout } from 'antd'
 import { connect } from 'react-redux'
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Route, Switch, Redirect } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import menu from '../menu'
-import SiderBar from './common/siderBar';
-import Header from './common/header';
-import '../../less/layout.css';
+import SiderBar from './common/siderBar'
+import Header from './common/header'
+import '../../less/layout.css'
 
 class layout extends React.Component {
     constructor() {
-        super();
+        super()
         this.state = {
             collapsed: false,
-        };
-        this.toggleCollapsed = this.toggleCollapsed.bind(this);
-        this.resize = this.resize.bind(this);
+        }
+        this.toggleCollapsed = this.toggleCollapsed.bind(this)
+        this.resize = this.resize.bind(this)
     }
+
     componentDidMount() {
-        this.resize();
-        window.addEventListener("resize", this.resize);
+        this.resize()
+        window.addEventListener('resize', this.resize)
     }
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.resize)
+    }
+
+    toggleCollapsed = () => {
+        const { isMobile } = this.props
+        this.setState((prevState) => ({
+            // 控制pc端，侧边栏是否折叠的变量
+            collapsed: !prevState.collapsed,
+            // 控制移动端，侧边栏是否折叠的变量
+            phoneCollapsed: isMobile ? !prevState.collapsed : null,
+        }))
     }
 
     resize() {
@@ -31,18 +43,8 @@ class layout extends React.Component {
         toggleDevice(window.innerWidth <= width)
     }
 
-    toggleCollapsed = () => {
-        const { isMobile } = this.props;
-        this.setState((prevState) => ({
-            // 控制pc端，侧边栏是否折叠的变量
-            collapsed: !prevState.collapsed,
-            // 控制移动端，侧边栏是否折叠的变量
-            phoneCollapsed: isMobile ? !prevState.collapsed : null
-        }));
-    }
-
     render() {
-        const { location, siderWidth } = this.props;
+        const { location, siderWidth } = this.props
         return (
             <Layout>
                 <SiderBar
@@ -52,7 +54,8 @@ class layout extends React.Component {
                 />
                 <Layout
                     style={{ marginLeft: siderWidth }}
-                    className={["container-layout", this.state.collapsed ? "collapsed" : null].join(' ')}>
+                    className={['container-layout', this.state.collapsed ? 'collapsed' : null].join(' ')}
+                >
                     <Header
                         toggleCollapsed={this.toggleCollapsed}
                         collapsed={this.state.collapsed}
@@ -66,12 +69,12 @@ class layout extends React.Component {
                             >
                                 <div>
                                     {/* Switch 加了location={location}这个，就避免了每次路由切换时出现两个同样的组件的问题
-                                        （并不太清楚原因-_-!!估计跟key有关系，可能相当于加了一个key） 
+                                        （并不太清楚原因-_-!!估计跟key有关系，可能相当于加了一个key）
                                     */}
                                     <Switch location={location}>
                                         <Route path="/home" component={menu.home} />
                                         <Route path="/echarts" component={menu.echarts} />
-                                        <Redirect to='/home'></Redirect>
+                                        <Redirect to="/home" />
                                     </Switch>
                                 </div>
                             </CSSTransition>
@@ -79,10 +82,22 @@ class layout extends React.Component {
                         {/* {children} */}
                     </div>
                 </Layout>
-            </Layout >
-        );
+            </Layout>
+        )
     }
 }
+
+
+layout.propTypes = {
+    toggleDevice: PropTypes.func.isRequired,
+    // eslint-disable-next-line react/forbid-prop-types
+    location: PropTypes.object.isRequired,
+    width: PropTypes.number.isRequired,
+    siderWidth: PropTypes.number.isRequired,
+    isMobile: PropTypes.bool.isRequired,
+}
+
+layout.defaultProps = {}
 
 function mapStateToProps(state) {
     return {
@@ -97,10 +112,10 @@ function mapDispatchToProps(dispatch) {
         toggleDevice(isMobile) {
             dispatch({
                 type: 'TOGGLE_DEVICE',
-                payload: isMobile
+                payload: isMobile,
             })
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(layout);
+export default connect(mapStateToProps, mapDispatchToProps)(layout)

@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { Row, Col, Card } from 'antd';
+import { Row, Col, Card } from 'antd'
 // import EchartsArea from '../../components/echarts/EchartsArea'
 import EchartsForce from '../../components/echarts/EchartsForce'
 import EchartsPie from '../../components/echarts/EchartsPie'

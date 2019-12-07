@@ -9,28 +9,26 @@ const initalState = {
 
 const toggleDevice = (state, action) => {
     switch (action.type) {
-        case 'TOGGLE_DEVICE':
-            return action.payload
-        default:
-            return state.isMobile
+    case 'TOGGLE_DEVICE':
+        return action.payload
+    default:
+        return state.isMobile
     }
 }
 
 const toggleLogin = (state, action) => {
     switch (action.type) {
-        case 'TOGGLE_LOGIN':
-            return action.payload
-        default:
-            return state.isLogin
+    case 'TOGGLE_LOGIN':
+        return action.payload
+    default:
+        return state.isLogin
     }
 }
 
-export default (state = initalState, action) => {
-    return {
-        isMobile: toggleDevice(state, action),
-        width: state.width,
-        siderWidth: state.siderWidth,
-        pending: state.pending,
-        isLogin: toggleLogin(state, action),
-    }
-}
+export default (state = initalState, action) => ({
+    isMobile: toggleDevice(state, action),
+    width: state.width,
+    siderWidth: state.siderWidth,
+    pending: state.pending,
+    isLogin: toggleLogin(state, action),
+})

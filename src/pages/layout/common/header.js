@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 // import { history } from '../../../history'
-import { Layout, Button, Icon } from 'antd';
+import { Layout, Button, Icon } from 'antd'
 import { connect } from 'react-redux'
 import Tags from './tags'
 import Breadcrumb from './breadcrumb'
@@ -9,31 +9,31 @@ import Breadcrumb from './breadcrumb'
 
 const {
     Header,
-} = Layout;
+} = Layout
 
 let antHeader = {
     backgroundColor: 'blueviolet',
     lineHeight: '30px',
     padding: '10px 20px',
     overflow: 'hidden',
-    transition: 'all 0.5s'
-};
+    transition: 'all 0.5s',
+}
 
 class Head extends React.Component {
     constructor() {
-        super();
-        this.state = {};
-        this.changeHeight = this.changeHeight.bind(this);
+        super()
+        this.state = {}
+        this.changeHeight = this.changeHeight.bind(this)
     }
 
     changeHeight = (tags) => {
-        let antHeaderStyle = { ...antHeader }
+        const antHeaderStyle = { ...antHeader }
         antHeaderStyle.height = tags.length > 0 ? '80px' : '50px'
         return antHeaderStyle
     }
 
     render() {
-        const { toggleCollapsed, collapsed, tags } = this.props;
+        const { toggleCollapsed, collapsed, tags } = this.props
         antHeader = this.changeHeight(tags)
         return (
             <Header
@@ -41,7 +41,7 @@ class Head extends React.Component {
                     position: 'fixed',
                     zIndex: 1,
                     width: '100%',
-                    ...antHeader
+                    ...antHeader,
                 }}
             >
                 <Button type="primary" onClick={toggleCollapsed} size="small">
@@ -54,7 +54,7 @@ class Head extends React.Component {
 
             </Header>
 
-        );
+        )
     }
 }
 
@@ -62,11 +62,13 @@ class Head extends React.Component {
 Head.propTypes = {
     toggleCollapsed: PropTypes.func.isRequired,
     collapsed: PropTypes.bool,
-};
+    // eslint-disable-next-line react/forbid-prop-types
+    tags: PropTypes.array.isRequired,
+}
 
 Head.defaultProps = {
     collapsed: false,
-};
+}
 
 function mapStateToProps(state) {
     return {

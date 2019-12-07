@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: ["off", {"peerDependencies": true}] */
 import { history } from '../history'
 
 // 进入登录路由的判断

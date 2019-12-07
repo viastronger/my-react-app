@@ -1,32 +1,32 @@
-import React, { Fragment } from 'react';
-import { Menu, Icon, Layout } from 'antd';
-import { history } from '../../../history'
-import PropTypes from 'prop-types';
-import siderBarRoute from '../../../config/siderBar';
+import React, { Fragment } from 'react'
+import { Menu, Icon, Layout } from 'antd'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { history } from '../../../history'
+import siderBarRoute from '../../../config/siderBar'
 
 
 const {
     Sider,
-} = Layout;
-const { SubMenu } = Menu;
+} = Layout
+const { SubMenu } = Menu
 
 const brandIcon = {
     fontSize: 40,
     display: 'block',
     margin: '20px auto',
-};
+}
 
 class siderBar extends React.Component {
     constructor() {
-        super();
+        super()
         this.state = {
             pathname: '',
             hasPathname: false,
-        };
-        this.renderLeftNav = this.renderLeftNav.bind(this);
-        this.changeRoute = this.changeRoute.bind(this);
-        this.setPathname = this.setPathname.bind(this);
+        }
+        this.renderLeftNav = this.renderLeftNav.bind(this)
+        this.changeRoute = this.changeRoute.bind(this)
+        this.setPathname = this.setPathname.bind(this)
     }
 
     componentDidMount() {
@@ -40,11 +40,11 @@ class siderBar extends React.Component {
     }
 
     setPathname(childrenRouter) {
-        const routeArr = childrenRouter ? childrenRouter : siderBarRoute
+        const routeArr = childrenRouter || siderBarRoute
         const currentPath = history.location.pathname.slice(1)
         let flag = false
-        routeArr.forEach(item => {
-            if(!flag){
+        routeArr.forEach((item) => {
+            if (!flag) {
                 if (currentPath === item.path) {
                     flag = true
                     return
@@ -52,12 +52,12 @@ class siderBar extends React.Component {
                 if (item.children) {
                     flag = this.setPathname(item.children)
                 }
-            }            
+            }
         })
 
         if (flag) {
             this.setState({
-                pathname: currentPath
+                pathname: currentPath,
             })
         }
         return flag
@@ -71,7 +71,7 @@ class siderBar extends React.Component {
     }
 
     renderLeftNav(childrenRouter) {
-        const routeArr = childrenRouter ? childrenRouter : siderBarRoute
+        const routeArr = childrenRouter || siderBarRoute
         return routeArr.map((item) => {
             if (!item.children) {
                 return (
@@ -82,7 +82,7 @@ class siderBar extends React.Component {
                         <Icon type={item.iconType} />
                         <span>{item.title}</span>
                     </Menu.Item>
-                );
+                )
             }
             return (
                 <SubMenu
@@ -113,29 +113,36 @@ class siderBar extends React.Component {
                                     </SubMenu>
                                 )
                             }
-                            return <Menu.Item
-                                key={childItem.path ? childItem.path : childItem.id}
-                                name={childItem.title}>
-                                {childItem.title}
-                            </Menu.Item>
+                            return (
+                                <Menu.Item
+                                    key={childItem.path ? childItem.path : childItem.id}
+                                    name={childItem.title}
+                                >
+                                    {childItem.title}
+                                </Menu.Item>
+                            )
                         })
                     }
                 </SubMenu>
-            );
-        });
+            )
+        })
     }
 
     render() {
-        const { collapsed, phoneCollapsed, isMobile, toggleCollapsed, siderWidth } = this.props;
+        const {
+            collapsed, phoneCollapsed, isMobile, toggleCollapsed, siderWidth,
+        } = this.props
         return (
             <Fragment>
                 {
                     isMobile ? (
-                        <div className={[
-                            "mask",
-                            phoneCollapsed ? 'show' : null].join(' ')}
-                            onClick={toggleCollapsed}>
-                        </div>
+                        <div
+                            className={['mask', phoneCollapsed ? 'show' : null].join(' ')}
+                            onClick={toggleCollapsed}
+                            onKeyDown={toggleCollapsed}
+                            role="button"
+                            tabIndex={0}
+                        />
                     ) : null
                 }
                 <Sider
@@ -143,10 +150,9 @@ class siderBar extends React.Component {
                     trigger={null}
                     collapsible
                     className={[
-                        "sider-bar",
-                        isMobile ? "hide" : null,
-                        phoneCollapsed ? "phoneCollapsed" : null].join(' ')
-                    }
+                        'sider-bar',
+                        isMobile ? 'hide' : null,
+                        phoneCollapsed ? 'phoneCollapsed' : null].join(' ')}
                     collapsed={!isMobile ? collapsed : false}
                 >
                     <Icon type="twitter" style={brandIcon} />
@@ -162,17 +168,23 @@ class siderBar extends React.Component {
                     </Menu>
                 </Sider>
             </Fragment>
-        );
+        )
     }
 }
 
 siderBar.propTypes = {
     collapsed: PropTypes.bool,
-};
+    isMobile: PropTypes.bool.isRequired,
+    siderWidth: PropTypes.number.isRequired,
+    addTags: PropTypes.func.isRequired,
+    phoneCollapsed: PropTypes.bool,
+    toggleCollapsed: PropTypes.func.isRequired,
+}
 
 siderBar.defaultProps = {
     collapsed: false,
-};
+    phoneCollapsed: false,
+}
 
 function mapStateToProps(state) {
     return {
@@ -186,9 +198,9 @@ function mapDispatchToProps(dispatch) {
         addTags(route) {
             dispatch({
                 type: 'ADD_TAGS',
-                payload: route
+                payload: route,
             })
-        }
+        },
     }
 }
 

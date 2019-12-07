@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 /**
  * 自定义Axios实例
@@ -7,7 +7,7 @@ const AJAX = axios.create({
     // baseURL: env.baseUrl,
     timeout: 30000,
     // withCredentials: env.credential
-});
+})
 
 // 请求拦截器
 AJAX.interceptors.request.use({
@@ -24,14 +24,14 @@ AJAX.interceptors.request.use({
         // if (authKey) {
         //     config.headers["authKey"] = authKey;
         // }
-        return config;
+        return config
     },
     // eslint-disable-next-line
     function(error) {
         // 对请求错误做些什么
-        return Promise.reject(error);
+        return Promise.reject(error)
     },
-});
+})
 
 // 添加响应拦截器
 AJAX.interceptors.response.use(
@@ -53,19 +53,19 @@ AJAX.interceptors.response.use(
             //     message: response.data.responseStatus.message,
             //     duration: 1000
             // });
-            return Promise.reject(response.data);
+            return Promise.reject(response.data)
         }
-        return response.data;
+        return response.data
     },
     (error) => {
         // 对响应错误做点什么，比如400、401、402等等
         if (error && error.response) {
             // eslint-disable-next-line no-console
-            console.log(error.response);
+            console.log(error.response)
         }
-        return Promise.reject(error);
+        return Promise.reject(error)
     },
-);
+)
 
 // 定义对外Get、Post、File请求
 export default {
@@ -75,27 +75,27 @@ export default {
         return AJAX.get(url, {
             params: param,
             headers,
-        });
+        })
     },
     post(url, param = null, headers = {}) {
         return AJAX.post(url, param, {
             headers,
-        });
+        })
     },
     put(url, param = null, headers = {}) {
         return AJAX.put(url, param, {
             headers,
-        });
+        })
     },
     file(url, param = null, headers = {}) {
         return AJAX.post(url, param, {
             headers: { 'Content-Type': 'multipart/form-data', ...headers },
-        });
+        })
     },
     delete(url, param = null, headers = {}) {
         return AJAX.delete(url, {
             param,
             headers: { 'Content-Type': 'multipart/form-data', ...headers },
-        });
+        })
     },
-};
+}

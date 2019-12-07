@@ -63,6 +63,6 @@ const siderBar = [
         iconType: 'notification',
         title: '路由5',
     },
-];
+]
 
-export default siderBar;
+export default siderBar

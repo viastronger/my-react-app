@@ -1,6 +1,6 @@
-import  list  from './data/list'
+import list from './data/list'
 
 
 export default {
-    list
+    list,
 }

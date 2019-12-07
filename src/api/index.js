@@ -1,9 +1,9 @@
 import request from './request'
 
-let getList = data => request.post('/getList', data)
-let getList2 = data => request.get('/getList2', data)
+const getList = (data) => request.post('/getList', data)
+const getList2 = (data) => request.get('/getList2', data)
 
 export {
     getList,
-    getList2
+    getList2,
 }

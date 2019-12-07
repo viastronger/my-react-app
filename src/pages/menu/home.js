@@ -1,12 +1,13 @@
 
-import React from 'react';
-import { Row, Col, Card, Table, Popconfirm, Button } from 'antd';
+import React from 'react'
+import {
+    Row, Col, Card, Table, Popconfirm, Button,
+} from 'antd'
 
 
-
-class ExampleAnimations extends React.Component{
+class ExampleAnimations extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.columns = [
             {
                 title: 'name',
@@ -24,18 +25,16 @@ class ExampleAnimations extends React.Component{
             {
                 title: 'operation',
                 dataIndex: 'operation',
-                render: (text, record, index) => {
-                    return this.state.dataSource.length > 1 ? (
-                        <Popconfirm
-                            title="Sure to delete?"
-                            onConfirm={() => this.onDelete(record, index)}
-                        >
-                            <span>Delete</span>
-                        </Popconfirm>
-                    ) : null;
-                },
+                render: (text, record, index) => (this.state.dataSource.length > 1 ? (
+                    <Popconfirm
+                        title="Sure to delete?"
+                        onConfirm={() => this.onDelete(record, index)}
+                    >
+                        <span>Delete</span>
+                    </Popconfirm>
+                ) : null),
             },
-        ];
+        ]
         this.state = {
             dataSource: [
                 {
@@ -53,33 +52,37 @@ class ExampleAnimations extends React.Component{
             ],
             count: 2,
             deleteIndex: -1,
-        };
+        }
     }
-    columns;
+
+    // columns;
+
     onDelete = (record, index) => {
-        const dataSource = [...this.state.dataSource];
-        dataSource.splice(index, 1);
-        this.setState({ deleteIndex: record.key });
+        const dataSource = [...this.state.dataSource]
+        dataSource.splice(index, 1)
+        this.setState({ deleteIndex: record.key })
         setTimeout(() => {
-            this.setState({ dataSource });
-        }, 500);
+            this.setState({ dataSource })
+        }, 500)
     };
+
     handleAdd = () => {
-        const { count, dataSource } = this.state;
+        const { count, dataSource } = this.state
         const newData = {
             key: count,
             name: `Edward King ${count}`,
             age: 32,
             address: `London, Park Lane no. ${count}`,
-        };
+        }
         this.setState({
             dataSource: [newData, ...dataSource],
             count: count + 1,
-        });
+        })
     };
+
     render() {
-        const { dataSource } = this.state;
-        const columns = this.columns;
+        const { dataSource } = this.state
+        const { columns } = this
         return (
             <div className="gutter-example">
                 <Row gutter={16}>
@@ -94,9 +97,8 @@ class ExampleAnimations extends React.Component{
                                     dataSource={dataSource}
                                     columns={columns}
                                     rowClassName={(record, index) => {
-                                        if (this.state.deleteIndex === record.key)
-                                            return 'animated zoomOutLeft min-black';
-                                        return 'animated fadeInRight';
+                                        if (this.state.deleteIndex === record.key) return 'animated zoomOutLeft min-black'
+                                        return 'animated fadeInRight'
                                     }}
                                 />
                             </Card>
@@ -104,8 +106,8 @@ class ExampleAnimations extends React.Component{
                     </Col>
                 </Row>
             </div>
-        );
+        )
     }
 }
 
-export default ExampleAnimations;
+export default ExampleAnimations
