@@ -1,7 +1,7 @@
 
 const initalState = {
     isMobile: false,
-    pending: false,
+    pending: true,
     isLogin: true,
     width: 992,
     siderWidth: 150,
@@ -25,10 +25,20 @@ const toggleLogin = (state, action) => {
     }
 }
 
+const togglePending = (state, action) => {
+    switch (action.type) {
+    case 'TOGGLE_PENDING':
+        return action.payload
+    default:
+        return state.pending
+    }
+}
+
+
 export default (state = initalState, action) => ({
     isMobile: toggleDevice(state, action),
     width: state.width,
     siderWidth: state.siderWidth,
-    pending: state.pending,
+    pending: togglePending(state, action),
     isLogin: toggleLogin(state, action),
 })

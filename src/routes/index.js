@@ -7,7 +7,6 @@ import { history } from '../history'
 import { isLoginMethod } from '../config/permission'
 import AuthorizedRoute from '../pages/AuthorizedRoute'
 import Layout from '../pages/layout'
-// import menu from '../pages/menu'
 import login from '../pages/login'
 
 class routes extends Component {
