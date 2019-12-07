@@ -59,15 +59,13 @@ const stateToProps = (state) => ({
 })
 
 
-function mapDispatchToProps(dispatch) {
-    return {
-        togglePending(pending) {
-            dispatch({
-                type: 'TOGGLE_PENDING',
-                payload: pending,
-            })
-        },
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+    togglePending(pending) {
+        dispatch({
+            type: 'TOGGLE_PENDING',
+            payload: pending,
+        })
+    },
+})
 
 export default connect(stateToProps, mapDispatchToProps)(AuthorizedRoute)
