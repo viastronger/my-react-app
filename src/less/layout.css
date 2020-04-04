@@ -36,7 +36,7 @@ body{
 
 /* ************ */
 
-.sider-bar {
+.sider-bar.ant-layout-sider {
     background: #fff;
     overflow-y: auto;
     height: 100vh;

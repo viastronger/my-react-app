@@ -83,7 +83,7 @@ module.exports = function (webpackEnv) {
     const env = getClientEnvironment(publicUrl)
 
     // common function to get style loaders
-    const getStyleLoaders = (cssOptions, preProcessor) => {
+    const getStyleLoaders = (cssOptions, preProcessor,lessOptions = {}) => {
         const loaders = [
             isEnvDevelopment && require.resolve('style-loader'),
             isEnvProduction && {
@@ -134,6 +134,7 @@ module.exports = function (webpackEnv) {
                     loader: require.resolve(preProcessor),
                     options: {
                         sourceMap: true,
+                        ...lessOptions
                     },
                 },
             )
@@ -395,6 +396,14 @@ module.exports = function (webpackEnv) {
                                             },
                                         },
                                     ],
+                                    [
+                                        'import',
+                                        {
+                                            libraryName: "antd",
+                                            libraryDirectory: "es",
+                                            style: true
+                                        }
+                                    ]
                                 ],
                                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -503,8 +512,14 @@ module.exports = function (webpackEnv) {
                                 {
                                     importLoaders: 2,
                                     sourceMap: isEnvProduction && shouldUseSourceMap,
+                                    
                                 },
-                                'less-loader'
+                                'less-loader',
+                                {
+                                    modifyVars:{
+                                        '@primary-color':'#f9c700'
+                                    }
+                                }
                             ),
                             // Don't consider CSS imports dead code even if the
                             // containing package claims to have no side effects.

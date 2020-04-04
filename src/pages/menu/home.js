@@ -89,9 +89,7 @@ class ExampleAnimations extends React.Component {
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <Button className="editable-add-btn mb-s" onClick={this.handleAdd}>
-                                    Add
-                                </Button>
+                                <Button type="primary" onClick={this.handleAdd}>Add</Button>
                                 <Table
                                     bordered
                                     dataSource={dataSource}
