@@ -1,21 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Layout, Button, Icon } from 'antd'
+import {
+    Layout,
+    Button,
+    Icon,
+    Row,
+    Col,
+} from 'antd'
 import { connect } from 'react-redux'
-import Tags from './tags'
-import Breadcrumb from './breadcrumb'
+import Tags from '../tags'
+import Breadcrumb from '../breadcrumb'
+import './index.less'
 
 const {
     Header,
 } = Layout
-
-let antHeader = {
-    backgroundColor: 'blueviolet',
-    lineHeight: '30px',
-    padding: '10px 20px',
-    overflow: 'hidden',
-    transition: 'all 0.5s',
-}
 
 class Head extends React.Component {
     constructor() {
@@ -25,27 +24,33 @@ class Head extends React.Component {
     }
 
     changeHeight = (tags) => {
-        const antHeaderStyle = { ...antHeader }
+        const antHeaderStyle = {}
         antHeaderStyle.height = tags.length > 0 ? '80px' : '50px'
         return antHeaderStyle
     }
 
     render() {
         const { toggleCollapsed, collapsed, tags } = this.props
-        antHeader = this.changeHeight(tags)
+        const antHeader = this.changeHeight(tags)
         return (
             <Header
+                className="antHeader"
                 style={{
-                    position: 'fixed',
-                    zIndex: 1,
-                    width: '100%',
                     ...antHeader,
                 }}
             >
-                <Button type="primary" onClick={toggleCollapsed} size="small">
-                    <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
-                </Button>
-                <Breadcrumb />
+                <Row>
+                    <Col span={12}>
+                        <Button type="primary" onClick={toggleCollapsed} size="small">
+                            <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
+                        </Button>
+                        <Breadcrumb />
+                    </Col>
+                    <Col span={12}>
+                        kdl
+                    </Col>
+                </Row>
+
                 {
                     tags.length > 0 ? <Tags /> : null
                 }

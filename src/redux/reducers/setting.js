@@ -1,7 +1,7 @@
 
 const initalState = {
     isMobile: false,
-    pending: true,
+    pending: false,
     isLogin: true,
     width: 992,
     siderWidth: 150,

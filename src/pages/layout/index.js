@@ -6,7 +6,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import menu from '../menu'
 import SiderBar from './common/siderBar'
-import Header from './common/header'
+import Header from './common/Header'
 import '../../less/layout.css'
 
 class layout extends React.Component {
@@ -74,7 +74,7 @@ class layout extends React.Component {
                                     <Switch location={location}>
                                         <Route path="/home" component={menu.home} />
                                         <Route path="/echarts" component={menu.echarts} />
-                                        <Redirect to="/home" />
+                                        {/* <Redirect to="/home" /> */}
                                     </Switch>
                                 </div>
                             </CSSTransition>

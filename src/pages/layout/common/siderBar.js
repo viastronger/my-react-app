@@ -64,6 +64,7 @@ class siderBar extends React.Component {
     }
 
     changeRoute(e) {
+        console.log(e)
         history.push(`/${e.key}`)
         this.props.addTags(e)
         // 移动端，点击侧边栏后，隐藏侧边栏
@@ -73,57 +74,30 @@ class siderBar extends React.Component {
     renderLeftNav(childrenRouter) {
         const routeArr = childrenRouter || siderBarRoute
         return routeArr.map((item) => {
-            if (!item.children) {
+            if (item.children) {
                 return (
-                    <Menu.Item
+                    <SubMenu
                         key={item.path ? item.path : item.id}
                         name={item.title}
+                        title={(
+                            <span>
+                                <Icon type={item.iconType} />
+                                <span>{item.title}</span>
+                            </span>
+                        )}
                     >
-                        <Icon type={item.iconType} />
-                        <span>{item.title}</span>
-                    </Menu.Item>
+                        {this.renderLeftNav(item.children)}
+                    </SubMenu>
                 )
             }
             return (
-                <SubMenu
+                <Menu.Item
                     key={item.path ? item.path : item.id}
                     name={item.title}
-                    title={(
-                        <span>
-                            <Icon type={item.iconType} />
-                            <span>{item.title}</span>
-                        </span>
-                    )}
                 >
-                    {
-                        item.children.map((childItem) => {
-                            if (childItem.children) {
-                                return (
-                                    <SubMenu
-                                        key={childItem.path ? childItem.path : childItem.id}
-                                        name={childItem.title}
-                                        title={(
-                                            <span>
-                                                <Icon type={childItem.iconType} />
-                                                <span>{childItem.title}</span>
-                                            </span>
-                                        )}
-                                    >
-                                        {this.renderLeftNav(childItem.children)}
-                                    </SubMenu>
-                                )
-                            }
-                            return (
-                                <Menu.Item
-                                    key={childItem.path ? childItem.path : childItem.id}
-                                    name={childItem.title}
-                                >
-                                    {childItem.title}
-                                </Menu.Item>
-                            )
-                        })
-                    }
-                </SubMenu>
+                    <Icon type={item.iconType} />
+                    <span>{item.title}</span>
+                </Menu.Item>
             )
         })
     }
@@ -159,7 +133,7 @@ class siderBar extends React.Component {
                     {!collapsed ? <div style={{ textAlign: 'center', marginBottom: 20 }}>Brand</div> : ''}
                     <Menu
                         onClick={this.changeRoute}
-                        mode="inline"
+                        mode="vertical"
                         selectedKeys={[this.state.pathname]}
                         // defaultOpenKeys={['sub1']}
                         style={{ borderRight: 0 }}
