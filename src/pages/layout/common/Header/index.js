@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux'
 import Tags from '../tags'
 import Breadcrumb from '../breadcrumb'
+import Axios from '../../../../api/jsonp'
 import './index.less'
 
 const {
@@ -21,6 +22,19 @@ class Head extends React.Component {
         super()
         this.state = {}
         this.changeHeight = this.changeHeight.bind(this)
+    }
+
+    componentDidMount() {
+        const { ak } = this.props
+        this.getWeather(ak)
+    }
+
+    getWeather = (ak) => {
+        Axios.jsonp({
+            url: `http://api.map.baidu.com/weather/v1/?district_id=222405&data_type=all&ak=${ak}`,
+        }).then((res) => {
+            console.log(res)
+        })
     }
 
     changeHeight = (tags) => {
@@ -65,6 +79,7 @@ class Head extends React.Component {
 Head.propTypes = {
     toggleCollapsed: PropTypes.func.isRequired,
     collapsed: PropTypes.bool,
+    ak: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
@@ -75,6 +90,7 @@ Head.defaultProps = {
 function mapStateToProps(state) {
     return {
         tags: state.tagsView.tags,
+        ak: state.setting.ak,
     }
 }
 

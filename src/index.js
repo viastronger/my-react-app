@@ -5,7 +5,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import store from './redux/store'
 // import 'antd/dist/antd.css'
 import * as serviceWorker from './serviceWorker'
-import './mock'
+// import './mock'
 import Routes from './routes'
 import './less/index.less'
 

@@ -5,6 +5,7 @@ const initalState = {
     isLogin: true,
     width: 992,
     siderWidth: 150,
+    ak: 'O2gylRqG1UcDNp6zTOQvc3kCBCdcTNRF',
 }
 
 const toggleDevice = (state, action) => {
@@ -39,6 +40,7 @@ export default (state = initalState, action) => ({
     isMobile: toggleDevice(state, action),
     width: state.width,
     siderWidth: state.siderWidth,
+    ak: state.ak,
     pending: togglePending(state, action),
     isLogin: toggleLogin(state, action),
 })
