@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Menu, Icon, Layout } from 'antd'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -65,7 +66,7 @@ class siderBar extends React.Component {
 
     changeRoute(e) {
         console.log(e)
-        history.push(`/${e.key}`)
+        // history.push(`/${e.key}`)
         this.props.addTags(e)
         // 移动端，点击侧边栏后，隐藏侧边栏
         this.props.phoneCollapsed && this.props.toggleCollapsed()
@@ -78,7 +79,6 @@ class siderBar extends React.Component {
                 return (
                     <SubMenu
                         key={item.path ? item.path : item.id}
-                        name={item.title}
                         title={(
                             <span>
                                 <Icon type={item.iconType} />
@@ -93,10 +93,12 @@ class siderBar extends React.Component {
             return (
                 <Menu.Item
                     key={item.path ? item.path : item.id}
-                    name={item.title}
+                    title={item.title}
                 >
-                    <Icon type={item.iconType} />
-                    <span>{item.title}</span>
+                    <NavLink to={item.path}>
+                        <Icon type={item.iconType} />
+                        {item.title}
+                    </NavLink>
                 </Menu.Item>
             )
         })

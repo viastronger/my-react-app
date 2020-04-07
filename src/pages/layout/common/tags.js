@@ -48,7 +48,7 @@ class Tags extends React.Component {
                     this.handleClose(tag)
                 }}
             >
-                {tag.item.props.name}
+                {tag.item.props.title}
             </Tag>
         )
         return (

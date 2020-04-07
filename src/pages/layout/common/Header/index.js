@@ -26,7 +26,7 @@ class Head extends React.Component {
 
     componentDidMount() {
         const { ak } = this.props
-        this.getWeather(ak)
+        // this.getWeather(ak)
     }
 
     getWeather = (ak) => {
