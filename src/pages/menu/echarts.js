@@ -22,15 +22,15 @@ export default class myEcharts extends Component {
                 <Row gutter={16}>
                     <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
-                            <Card title="关系图" bordered={false}>
-                                <EchartsForce />
+                            <Card title="饼图" bordered={false}>
+                                <EchartsPie />
                             </Card>
                         </div>
                     </Col>
                     <Col className="gutter-row" md={12}>
                         <div className="gutter-box">
-                            <Card title="饼图" bordered={false}>
-                                <EchartsPie />
+                            <Card title="关系图" bordered={false}>
+                                <EchartsForce />
                             </Card>
                         </div>
                     </Col>

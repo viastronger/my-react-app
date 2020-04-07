@@ -20,7 +20,11 @@ class Tags extends React.Component {
     }
 
     forceUpdateMethod = () => {
-        if (this.props.tagFlag) {
+        const { tags } = this.props
+        // 路由切换判断是否在tags里面，如果存在，强制更新tags组件，渲染高亮
+        // 不存在就是在tags里面新增了一个路由，不需要调用强制更新方法，由render方法来重新渲染
+        const isExist = tags.some((tag) => tag.key === history.location.pathname)
+        if (isExist) {
             this.forceUpdate()
         }
     }
@@ -45,7 +49,6 @@ class Tags extends React.Component {
                 closable
                 style={{ cursor: 'pointer' }}
                 className={active ? 'active' : ''}
-                onClick={this.changeRoute}
                 onClose={(e) => {
                     e.preventDefault()
                     this.handleClose(tag)
@@ -63,10 +66,6 @@ class Tags extends React.Component {
             </span>
         )
     };
-
-    changeRoute = () => {
-        this.props.setTagFlag(true)
-    }
 
     renderThumbHorizontal({ style, ...props }) { // 设置滚动条的样式
         const thumbStyle = {
@@ -132,7 +131,6 @@ class Tags extends React.Component {
 function mapStateToProps(state) {
     return {
         tags: state.tagsView.tags,
-        tagFlag: state.tagsView.tagFlag,
     }
 }
 
@@ -144,12 +142,6 @@ function mapDispatchToProps(dispatch) {
                 payload: newTags,
             })
         },
-        setTagFlag(flag) {
-            dispatch({
-                type: 'SET_TAG_FLAG',
-                payload: flag,
-            })
-        },
     }
 }
 
@@ -157,8 +149,6 @@ function mapDispatchToProps(dispatch) {
 Tags.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.object).isRequired,
     removeTags: PropTypes.func.isRequired,
-    tagFlag: PropTypes.bool.isRequired,
-    setTagFlag: PropTypes.func.isRequired,
 }
 
 Tags.defaultProps = {}

@@ -67,7 +67,6 @@ class siderBar extends React.Component {
     changeRoute(e) {
         // history.push(`/${e.key}`)
         // console.log(e)
-        this.props.setTagFlag(false)
         this.props.addTags(e)
         // 移动端，点击侧边栏后，隐藏侧边栏
         this.props.phoneCollapsed && this.props.toggleCollapsed()
@@ -154,7 +153,6 @@ siderBar.propTypes = {
     isMobile: PropTypes.bool.isRequired,
     siderWidth: PropTypes.number.isRequired,
     addTags: PropTypes.func.isRequired,
-    setTagFlag: PropTypes.func.isRequired,
     phoneCollapsed: PropTypes.bool,
     toggleCollapsed: PropTypes.func.isRequired,
 }
@@ -177,12 +175,6 @@ function mapDispatchToProps(dispatch) {
             dispatch({
                 type: 'ADD_TAGS',
                 payload: route,
-            })
-        },
-        setTagFlag(flag) {
-            dispatch({
-                type: 'SET_TAG_FLAG',
-                payload: flag,
             })
         },
     }
