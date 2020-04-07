@@ -4,7 +4,7 @@ body{
 }
 
 .ant-layout {
-    height: 100%;
+    height: 100vh;
 }
 
 .ant-tag {

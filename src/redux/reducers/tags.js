@@ -1,5 +1,6 @@
 
 const initalState = {
+    tagFlag: false,
     tags: [],
 }
 
@@ -16,6 +17,17 @@ const addTags = (tags = initalState.tags, action) => {
     }
 }
 
+const setTagFlag = (tagFlag = initalState.tagFlag, action) => {
+    const { type, payload } = action
+    switch (type) {
+    case 'SET_TAG_FLAG':
+        return payload
+    default:
+        return tagFlag
+    }
+}
+
 export default (state = initalState, action) => ({
     tags: addTags(state.tags, action),
+    tagFlag: setTagFlag(state.tagFlag, action),
 })

@@ -64,7 +64,6 @@ class Head extends React.Component {
                         kdl
                     </Col>
                 </Row>
-
                 {
                     tags.length > 0 ? <Tags /> : null
                 }

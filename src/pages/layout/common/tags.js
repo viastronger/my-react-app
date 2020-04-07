@@ -20,17 +20,19 @@ class Tags extends React.Component {
     }
 
     forceUpdateMethod = () => {
-        this.forceUpdate()
+        if (this.props.tagFlag) {
+            this.forceUpdate()
+        }
     }
 
-    judgePathName = (tag) => (history.location.pathname.slice(1) === tag.key)
+    judgePathName = (tag) => history.location.pathname === tag.key
 
     handleClose = (removedTag) => {
         const { tags, removeTags } = this.props
         const newTags = tags.filter((tag) => tag.key !== removedTag.key)
         if (this.judgePathName(removedTag)) {
             // 如果删除的是当前路由的tag，那么选tag数组中最后一个
-            newTags.length > 0 ? history.push(`/${newTags[newTags.length - 1].key}`) : history.push('/')
+            newTags.length > 0 ? history.push(`/${newTags[newTags.length - 1].key}`) : history.push('/admin')
         }
 
         removeTags(newTags)
@@ -43,6 +45,7 @@ class Tags extends React.Component {
                 closable
                 style={{ cursor: 'pointer' }}
                 className={active ? 'active' : ''}
+                onClick={this.changeRoute}
                 onClose={(e) => {
                     e.preventDefault()
                     this.handleClose(tag)
@@ -56,10 +59,14 @@ class Tags extends React.Component {
                 key={tag.key}
                 style={{ display: 'inline-block' }}
             >
-                <Link to={`/${tag.key}`}>{tagElem}</Link>
+                <Link to={tag.key}>{tagElem}</Link>
             </span>
         )
     };
+
+    changeRoute = () => {
+        this.props.setTagFlag(true)
+    }
 
     renderThumbHorizontal({ style, ...props }) { // 设置滚动条的样式
         const thumbStyle = {
@@ -125,6 +132,7 @@ class Tags extends React.Component {
 function mapStateToProps(state) {
     return {
         tags: state.tagsView.tags,
+        tagFlag: state.tagsView.tagFlag,
     }
 }
 
@@ -136,6 +144,12 @@ function mapDispatchToProps(dispatch) {
                 payload: newTags,
             })
         },
+        setTagFlag(flag) {
+            dispatch({
+                type: 'SET_TAG_FLAG',
+                payload: flag,
+            })
+        },
     }
 }
 
@@ -143,6 +157,8 @@ function mapDispatchToProps(dispatch) {
 Tags.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.object).isRequired,
     removeTags: PropTypes.func.isRequired,
+    tagFlag: PropTypes.bool.isRequired,
+    setTagFlag: PropTypes.func.isRequired,
 }
 
 Tags.defaultProps = {}

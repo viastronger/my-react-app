@@ -14,6 +14,6 @@ export const isLoginMethod = (isLogin) => {
     //   replaceState('/login')
     // }
     if (isLogin) {
-        history.replace('/')
+        history.replace('/admin')
     }
 }

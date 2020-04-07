@@ -7,13 +7,19 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import menu from '../menu'
 import SiderBar from './common/siderBar'
 import Header from './common/Header'
+import Nomatch from './common/Nomatch'
 import '../../less/layout.css'
 
 class layout extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             collapsed: false,
+            contentStyle: {
+                padding: '0 20px 20px',
+                minHeight: 'calc(100vh - 90px)',
+                transition: 'all .5s',
+            },
         }
         this.toggleCollapsed = this.toggleCollapsed.bind(this)
         this.resize = this.resize.bind(this)
@@ -44,7 +50,12 @@ class layout extends React.Component {
     }
 
     render() {
-        const { location, siderWidth } = this.props
+        const { location, siderWidth, tags } = this.props
+        const { contentStyle } = this.state
+        const obj = {
+            ...contentStyle,
+            marginTop: tags.length > 0 ? 90 : 60,
+        }
         return (
             <Layout>
                 <SiderBar
@@ -60,7 +71,7 @@ class layout extends React.Component {
                         toggleCollapsed={this.toggleCollapsed}
                         collapsed={this.state.collapsed}
                     />
-                    <div style={{ padding: '0 20px 20px', marginTop: 90, minHeight: 'calc(100vh - 90px)' }}>
+                    <div style={obj}>
                         <TransitionGroup>
                             <CSSTransition
                                 key={location.pathname}
@@ -72,9 +83,10 @@ class layout extends React.Component {
                                         （并不太清楚原因-_-!!估计跟key有关系，可能相当于加了一个key）
                                     */}
                                     <Switch location={location}>
-                                        <Route path="/home" component={menu.home} />
-                                        <Route path="/echarts" component={menu.echarts} />
-                                        {/* <Redirect to="/home" /> */}
+                                        <Route path="/admin/home" component={menu.home} />
+                                        <Route path="/admin/echarts" component={menu.echarts} />
+                                        <Route exact path="/admin/route2" component={menu.route2} />
+                                        <Route component={Nomatch} />
                                     </Switch>
                                 </div>
                             </CSSTransition>
@@ -95,6 +107,7 @@ layout.propTypes = {
     width: PropTypes.number.isRequired,
     siderWidth: PropTypes.number.isRequired,
     isMobile: PropTypes.bool.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 layout.defaultProps = {}
@@ -104,6 +117,7 @@ function mapStateToProps(state) {
         width: state.setting.width,
         isMobile: state.setting.isMobile,
         siderWidth: state.setting.siderWidth,
+        tags: state.tagsView.tags,
     }
 }
 

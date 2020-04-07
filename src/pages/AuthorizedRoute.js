@@ -19,9 +19,9 @@ class AuthorizedRoute extends React.Component {
         const {
             component: Component, pending, isLogin, togglePending, ...rest
         } = this.props
-        setTimeout(() => {
-            togglePending(false)
-        }, 3000)
+        // setTimeout(() => {
+        //     togglePending(false)
+        // }, 3000)
         return (
             <Route
                 {...rest}

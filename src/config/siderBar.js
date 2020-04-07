@@ -1,42 +1,42 @@
 const siderBar = [
     {
-        path: 'home',
+        path: '/admin/home',
         id: '1',
         iconType: 'windows',
         title: '首页',
     },
     {
         id: '2',
-        path: 'route2',
+        path: '/admin/route2',
         iconType: 'user',
         title: '路由2',
         children: [
             {
-                path: 'route2/asf',
+                path: '/admin/route2/asf',
                 id: '2-1',
                 iconType: 'user',
                 title: '路由2-2',
                 children: [
                     {
-                        path: 'route2/asf/sanji1',
+                        path: '/admin/route2/asf/sanji1',
                         id: '2-1-1',
                         iconType: 'user',
                         title: '路由2-2-1',
                     },
                     {
-                        path: 'route2/asf/sanji2',
+                        path: '/admin/route2/asf/sanji2',
                         id: '2-1-2',
                         iconType: 'user',
                         title: '路由2-2-1',
                     },
                     {
-                        path: 'route2/asf/sanji3',
+                        path: '/admin/route2/asf/sanji3',
                         id: '2-1-3',
                         iconType: 'user',
                         title: '路由2-2-1',
                     },
                     {
-                        path: 'route2/asf/sanji4',
+                        path: '/admin/route2/asf/sanji4',
                         id: '2-1-4',
                         iconType: 'user',
                         title: '路由2-2-1',
@@ -46,7 +46,7 @@ const siderBar = [
         ],
     },
     {
-        path: 'echarts',
+        path: '/admin/echarts',
         id: '3',
         iconType: 'area-chart',
         title: '图表',

@@ -55,7 +55,6 @@ class Login extends Component {
                                 <p key="0"> 浙江七巧板信息科技股份有限公司 </p>,
                             ] : null
                         }
-
                     </QueuiAnim>
                 </div>
             </div>
