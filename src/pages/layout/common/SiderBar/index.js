@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom'
 import { Menu, Icon, Layout } from 'antd'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { history } from '../../../history'
-import siderBarRoute from '../../../config/siderBar'
-
+import { history } from '../../../../history'
+import siderBarRoute from '../../../../config/siderBar'
+import './index.less'
 
 const {
     Sider,
@@ -98,7 +98,7 @@ class siderBar extends React.Component {
                 >
                     <NavLink to={item.path}>
                         <Icon type={item.iconType} />
-                        {item.title}
+                        <span>{item.title}</span>
                     </NavLink>
                 </Menu.Item>
             )

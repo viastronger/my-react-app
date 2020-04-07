@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import menu from '../menu'
-import SiderBar from './common/siderBar'
+import SiderBar from './common/SiderBar'
 import Header from './common/Header'
 import Nomatch from './common/Nomatch'
 import '../../less/layout.css'
@@ -15,11 +15,6 @@ class layout extends React.Component {
         super(props)
         this.state = {
             collapsed: false,
-            contentStyle: {
-                padding: '0 20px 20px',
-                minHeight: 'calc(100vh - 90px)',
-                transition: 'all .5s',
-            },
         }
         this.toggleCollapsed = this.toggleCollapsed.bind(this)
         this.resize = this.resize.bind(this)
@@ -50,11 +45,18 @@ class layout extends React.Component {
     }
 
     render() {
-        const { location, siderWidth, tags } = this.props
-        const { contentStyle } = this.state
+        const {
+            location,
+            siderWidth,
+            tags,
+            isMobile,
+        } = this.props
+        const distance = tags.length > 0 && !isMobile ? 90 : 60
         const obj = {
-            ...contentStyle,
-            marginTop: tags.length > 0 ? 90 : 60,
+            padding: '0 20px 20px',
+            minHeight: `calc(100vh - ${distance}px)`,
+            transition: 'all .5s',
+            marginTop: distance,
         }
         return (
             <Layout>

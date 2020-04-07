@@ -39,12 +39,18 @@ class Head extends React.Component {
 
     changeHeight = (tags) => {
         const antHeaderStyle = {}
-        antHeaderStyle.height = tags.length > 0 ? '80px' : '50px'
+        const { isMobile } = this.props
+        antHeaderStyle.height = tags.length > 0 && !isMobile ? '80px' : '50px'
         return antHeaderStyle
     }
 
     render() {
-        const { toggleCollapsed, collapsed, tags } = this.props
+        const {
+            toggleCollapsed,
+            collapsed,
+            tags,
+            isMobile,
+        } = this.props
         const antHeader = this.changeHeight(tags)
         return (
             <Header
@@ -54,18 +60,20 @@ class Head extends React.Component {
                 }}
             >
                 <Row>
-                    <Col span={12}>
+                    <Col span={14}>
                         <Button type="primary" onClick={toggleCollapsed} size="small">
                             <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
                         </Button>
-                        <Breadcrumb />
+                        {
+                            !isMobile ? <Breadcrumb /> : null
+                        }
                     </Col>
-                    <Col span={12}>
+                    <Col span={10}>
                         kdl
                     </Col>
                 </Row>
                 {
-                    tags.length > 0 ? <Tags /> : null
+                    tags.length > 0 && !isMobile ? <Tags /> : null
                 }
 
             </Header>
@@ -78,6 +86,7 @@ class Head extends React.Component {
 Head.propTypes = {
     toggleCollapsed: PropTypes.func.isRequired,
     collapsed: PropTypes.bool,
+    isMobile: PropTypes.bool.isRequired,
     ak: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
@@ -90,6 +99,7 @@ function mapStateToProps(state) {
     return {
         tags: state.tagsView.tags,
         ak: state.setting.ak,
+        isMobile: state.setting.isMobile,
     }
 }
 
