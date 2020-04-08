@@ -35,9 +35,11 @@ export default class MyModal extends React.Component {
                 isHide: false,
             })
             // 元素隐藏之后，将元素归位
-            const top = this.props.style && this.props.style.top ? this.props.style.top : 50
-            container.style.left = '50%'
-            container.style.top = `${top}px`
+            if (container) {
+                const top = this.props.style && this.props.style.top ? this.props.style.top : 50
+                container.style.left = '50%'
+                container.style.top = `${top}px`
+            }
         }, 500)
     }
 
