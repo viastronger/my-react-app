@@ -7,27 +7,27 @@ const siderBar = [
     },
     {
         id: '2',
-        path: '/admin/route2',
+        path: '/admin/ui',
         iconType: 'user',
         title: '路由2',
         children: [
             {
-                path: '/admin/route2/asf',
+                path: '/admin/ui/asf',
                 id: '2-1',
                 iconType: 'user',
                 title: '路由2-2',
                 children: [
                     {
-                        path: '/admin/route2/asf/sanji1',
+                        path: '/admin/ui/button',
                         id: '2-1-1',
                         iconType: 'user',
-                        title: '路由2-2-1',
+                        title: 'button',
                     },
                     {
-                        path: '/admin/route2/asf/sanji2',
+                        path: '/admin/ui/modal',
                         id: '2-1-2',
                         iconType: 'user',
-                        title: '路由2-2-1',
+                        title: 'modal',
                     },
                     {
                         path: '/admin/route2/asf/sanji3',

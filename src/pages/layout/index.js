@@ -87,6 +87,8 @@ class layout extends React.Component {
                                     <Switch location={location}>
                                         <Route path="/admin/home" component={menu.home} />
                                         <Route path="/admin/echarts" component={menu.echarts} />
+                                        <Route path="/admin/ui/button" component={menu.button} />
+                                        <Route path="/admin/ui/modal" component={menu.modal} />
                                         <Route exact path="/admin/route2" component={menu.route2} />
                                         <Route component={Nomatch} />
                                     </Switch>

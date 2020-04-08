@@ -1,0 +1,105 @@
+.my-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  display: none;
+  // transition:all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  // opacity: 0;
+  &.show {
+    animation: fadeIn 0.5s forwards cubic-bezier(0.075, 0.82, 0.165, 1);
+    // opacity: 1;
+  }
+  &.hide {
+    animation: fadeOut 0.5s forwards cubic-bezier(0.075, 0.82, 0.165, 1);
+    // opacity: 0;
+  }
+}
+.modal-mask {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-container {
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  transform: translate(-50%);
+  text-align: center;
+  transform-origin: left;
+  &::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    width: 0;
+  }
+  .container {
+    vertical-align: middle;
+    display: inline-block;
+    border-radius: 4px;
+    width: 800px;
+    height: 300px;
+    transition: all 0.5s;
+    transform: scale(0.2);
+    background-color: #fff;
+    text-align: left;
+    transform-origin: inherit;
+    // transition:all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &.show {
+      animation: show 0.5s forwards cubic-bezier(0.075, 0.82, 0.165, 1);
+      // transform: scale(1);
+    }
+    &.hide {
+      animation: hide 0.5s forwards cubic-bezier(0.075, 0.82, 0.165, 1);
+      // transform: scale(0.2);
+    }
+    .title {
+      line-height: 40px;
+      padding-left: 20px;
+      cursor: move;
+    }
+    .modal-contain {
+      padding: 20px;
+    }
+  }
+}
+
+@keyframes show {
+  from {
+    transform: scale(0.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes hide {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.2);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
