@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { Route, Switch, Router } from 'react-router-dom'
+import {
+    Route,
+    Switch,
+    Router,
+    Redirect,
+} from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
@@ -19,6 +24,7 @@ class routes extends Component {
                     <Switch>
                         <Route path="/login" component={login} render={isLoginMethod(isLogin)} />
                         <AuthorizedRoute path="/admin" component={Layout} />
+                        <Redirect to="/admin" />
                         {/* <Route
                             path="/admin"
                             render={({ history, location, match }) => (

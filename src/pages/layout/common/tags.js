@@ -10,13 +10,13 @@ import { history } from '../../../history'
 
 class Tags extends React.Component {
     componentDidMount() {
-        history.listen((e) => {
+        this.unlisten = history.listen((location, action) => {
             this.forceUpdateMethod && this.forceUpdateMethod()
         })
     }
 
     componentWillUnmount() {
-        this.forceUpdateMethod = null
+        this.unlisten()
     }
 
     forceUpdateMethod = () => {
@@ -36,7 +36,7 @@ class Tags extends React.Component {
         const newTags = tags.filter((tag) => tag.key !== removedTag.key)
         if (this.judgePathName(removedTag)) {
             // 如果删除的是当前路由的tag，那么选tag数组中最后一个
-            newTags.length > 0 ? history.push(`/${newTags[newTags.length - 1].key}`) : history.push('/admin')
+            newTags.length > 0 ? history.replace(`${newTags[newTags.length - 1].key}`) : history.replace('/admin')
         }
 
         removeTags(newTags)
