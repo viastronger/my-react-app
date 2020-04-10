@@ -55,7 +55,15 @@ const siderBar = [
         path: '/admin/form',
         id: '4',
         iconType: 'laptop',
-        title: 'from',
+        title: 'form',
+        children: [
+            {
+                path: '/admin/form/formLogin',
+                id: '4-1',
+                iconType: 'user',
+                title: 'formLogin',
+            },
+        ],
     },
     {
         path: 'route5',

@@ -5,7 +5,7 @@ import button from './ui/button'
 import modal from './ui/modal'
 import tab from './ui/tab'
 import gallery from './ui/gallery'
-import form from './form/form'
+import formLogin from './form/login'
 import route2 from './route2'
 
 export default {
@@ -15,6 +15,6 @@ export default {
     modal,
     tab,
     gallery,
-    form,
+    formLogin,
     route2,
 }

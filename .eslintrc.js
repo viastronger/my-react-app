@@ -44,6 +44,7 @@ module.exports = {
         "react/no-unused-state": "off",
         "no-param-reassign": "off",
         "jsx-a11y/control-has-associated-label": "off",
+        "jsx-a11y/anchor-is-valid":"off",
         "no-plusplus": "off",
         "constructor-super": "off",
         "react/jsx-props-no-spreading": "off",

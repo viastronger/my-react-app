@@ -74,16 +74,18 @@ class layout extends React.Component {
                         collapsed={this.state.collapsed}
                     />
                     <div style={obj}>
-                        <TransitionGroup>
+                        <TransitionGroup style={{ position: 'relative' }}>
                             <CSSTransition
                                 key={location.pathname}
                                 classNames="fade"
                                 timeout={800}
+                                appear
                             >
-                                <div>
-                                    {/* Switch 加了location={location}这个，就避免了每次路由切换时出现两个同样的组件的问题
-                                        （并不太清楚原因-_-!!估计跟key有关系，可能相当于加了一个key）
-                                    */}
+                                {/* div加上可以和绝对定位，就避免了每次路由切换时出现两个同样的组件的问题,而且父级元素需要相对定位 */}
+                                <div
+                                    key={location.pathname}
+                                    style={{ position: 'absolute', width: '100%' }}
+                                >
                                     <Switch location={location}>
                                         <Route path="/admin/home" component={menu.home} />
                                         <Route path="/admin/echarts" component={menu.echarts} />
@@ -91,7 +93,7 @@ class layout extends React.Component {
                                         <Route path="/admin/ui/modal" component={menu.modal} />
                                         <Route path="/admin/ui/tab" component={menu.tab} />
                                         <Route path="/admin/ui/gallery" component={menu.gallery} />
-                                        <Route path="/admin/form" component={menu.form} />
+                                        <Route path="/admin/form/formLogin" component={menu.formLogin} />
                                         <Route exact path="/admin/route2" component={menu.route2} />
                                         <Route component={Nomatch} />
                                     </Switch>
