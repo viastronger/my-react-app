@@ -30,10 +30,10 @@ const siderBar = [
                         title: 'modal',
                     },
                     {
-                        path: '/admin/route2/asf/sanji3',
+                        path: '/admin/ui/tab',
                         id: '2-1-3',
                         iconType: 'user',
-                        title: '路由2-2-1',
+                        title: 'tab',
                     },
                     {
                         path: '/admin/route2/asf/sanji4',

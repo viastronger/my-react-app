@@ -34,9 +34,14 @@ class Tags extends React.Component {
     handleClose = (removedTag) => {
         const { tags, removeTags } = this.props
         const newTags = tags.filter((tag) => tag.key !== removedTag.key)
+        let removeTagsIndex
+        tags.map((tag, index) => {
+            if (tag.key === removedTag.key) removeTagsIndex = index
+            return null
+        })
         if (this.judgePathName(removedTag)) {
-            // 如果删除的是当前路由的tag，那么选tag数组中最后一个
-            newTags.length > 0 ? history.replace(`${newTags[newTags.length - 1].key}`) : history.replace('/admin')
+            // 如果删除的是当前路由的tag，那么选中当前删除tag的前一个
+            newTags.length > 0 ? history.replace(`${newTags[removeTagsIndex - 1].key}`) : history.replace('/admin')
         }
 
         removeTags(newTags)
