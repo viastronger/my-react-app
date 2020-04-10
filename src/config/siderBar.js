@@ -36,10 +36,10 @@ const siderBar = [
                         title: 'tab',
                     },
                     {
-                        path: '/admin/route2/asf/sanji4',
+                        path: '/admin/ui/gallery',
                         id: '2-1-4',
                         iconType: 'user',
-                        title: '路由2-2-1',
+                        title: 'gallery',
                     },
                 ],
             },
@@ -52,10 +52,10 @@ const siderBar = [
         title: '图表',
     },
     {
-        path: 'route4',
+        path: '/admin/form',
         id: '4',
         iconType: 'laptop',
-        title: '路由4',
+        title: 'from',
     },
     {
         path: 'route5',
