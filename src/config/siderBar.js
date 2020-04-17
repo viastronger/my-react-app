@@ -66,7 +66,7 @@ const siderBar = [
         ],
     },
     {
-        path: 'route5',
+        path: '/admin/route5',
         id: '5',
         iconType: 'notification',
         title: '路由5',

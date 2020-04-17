@@ -64,9 +64,8 @@ class siderBar extends React.Component {
         return flag
     }
 
-    changeRoute(e) {
+    changeRoute = (e) => {
         // history.push(`/${e.key}`)
-        // console.log(e)
         this.props.addTags(e)
         // 移动端，点击侧边栏后，隐藏侧边栏
         this.props.phoneCollapsed && this.props.toggleCollapsed()
