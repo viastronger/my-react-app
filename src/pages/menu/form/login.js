@@ -8,6 +8,7 @@ import {
     Button,
     Checkbox,
 } from 'antd'
+import { login } from '../../../api/index'
 import './index.less'
 
 class NormalLoginForm extends Component {
@@ -15,18 +16,20 @@ class NormalLoginForm extends Component {
         e.preventDefault()
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values)
+                login(values).then((res) => {
+                    console.log(res)
+                })
             }
         })
     }
 
     render() {
         const { getFieldDecorator } = this.props.form
-        console.log(this.props)
         return (
             <Form onSubmit={this.handleSubmit} className="login-form">
                 <Form.Item>
-                    {getFieldDecorator('username', {
+                    {getFieldDecorator('mobile', {
+                        initialValue: '17665497581',
                         rules: [{ required: true, message: 'Please input your username!' }],
                     })(
                         <Input
@@ -37,6 +40,7 @@ class NormalLoginForm extends Component {
                 </Form.Item>
                 <Form.Item>
                     {getFieldDecorator('password', {
+                        initialValue: '123456',
                         rules: [{ required: true, message: 'Please input your Password!' }],
                     })(
                         <Input
