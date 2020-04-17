@@ -2,8 +2,9 @@
 import React from 'react'
 import {
     Row, Col, Card, Table, Popconfirm, Button,
+    Icon,
 } from 'antd'
-
+import { homeTable, getList } from '../../api/index'
 
 class ExampleAnimations extends React.Component {
     constructor(props) {
@@ -19,8 +20,8 @@ class ExampleAnimations extends React.Component {
                 dataIndex: 'age',
             },
             {
-                title: 'address',
-                dataIndex: 'address',
+                title: 'email',
+                dataIndex: 'email',
             },
             {
                 title: 'operation',
@@ -30,39 +31,28 @@ class ExampleAnimations extends React.Component {
                         title="Sure to delete?"
                         onConfirm={() => this.onDelete(record, index)}
                     >
-                        <span>Delete</span>
+                        <Icon type="delete" />
                     </Popconfirm>
                 ) : null),
             },
         ]
         this.state = {
-            dataSource: [
-                {
-                    key: '0',
-                    name: 'Edward King 0',
-                    age: '32',
-                    address: 'London, Park Lane no. 0',
-                },
-                {
-                    key: '1',
-                    name: 'Edward King 1',
-                    age: '32',
-                    address: 'London, Park Lane no. 1',
-                },
-            ],
+            dataSource: [],
             count: 2,
             deleteIndex: -1,
         }
     }
 
-    // columns;
+    componentDidMount() {
+        this.getTableList()
+    }
 
     onDelete = (record, index) => {
         const dataSource = [...this.state.dataSource]
         dataSource.splice(index, 1)
-        this.setState({ deleteIndex: record.key })
+        this.setState({ deleteIndex: record.id, flag: true })
         setTimeout(() => {
-            this.setState({ dataSource })
+            this.setState({ dataSource, flag: false })
         }, 500)
     };
 
@@ -80,6 +70,24 @@ class ExampleAnimations extends React.Component {
         })
     };
 
+    getTableList = () => {
+        homeTable().then((res) => {
+            this.setState({
+                dataSource: res.list,
+            })
+        })
+    }
+
+    reload = () => {
+        this.getTableList()
+    }
+
+    renderClassName = (record, index) => {
+        // if (this.state.deleteIndex === record.key) return 'animated zoomOutLeft min-black'
+        if (this.state.flag && record.id === this.state.deleteIndex) return 'animated fadeOutLeft'
+        return 'animated fadeInRight'
+    }
+
     render() {
         const { dataSource } = this.state
         const { columns } = this
@@ -89,15 +97,15 @@ class ExampleAnimations extends React.Component {
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
                             <Card bordered={false}>
-                                <Button type="primary" onClick={this.handleAdd}>Add</Button>
+                                {/* <Button type="primary" onClick={this.handleAdd}>Add</Button> */}
+                                <Button type="primary" onClick={this.reload}>reload</Button>
                                 <Table
                                     bordered
                                     dataSource={dataSource}
                                     columns={columns}
-                                    rowClassName={(record, index) => {
-                                        if (this.state.deleteIndex === record.key) return 'animated zoomOutLeft min-black'
-                                        return 'animated fadeInRight'
-                                    }}
+                                    pagination={20}
+                                    rowKey={(record) => record.id}
+                                    rowClassName={(record, index) => this.renderClassName(record, index)}
                                 />
                             </Card>
                         </div>

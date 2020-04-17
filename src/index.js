@@ -4,9 +4,10 @@ import { Provider } from 'react-redux'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import store from './redux/store'
 import * as serviceWorker from './serviceWorker'
-// import './mock'
+import './mock'
 import Routes from './routes'
 import './less/index.less'
+import 'animate.css'
 
 ReactDOM.render((
     <Provider store={store}>

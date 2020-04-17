@@ -2,25 +2,6 @@
 import Mock from 'mockjs'
 
 const { Random } = Mock
-const list = []; const count = []
-
-for (let i = 0; i < 10; i++) {
-    count.push(i)
-}
-
-count.forEach(() => {
-    list.push(Mock.mock({
-        key: Random.guid(),
-        time: Random.datetime(),
-        name: Random.cname(),
-        telphone: /^1[0-9]{10}$/,
-        email: Random.email(),
-        'type|1': ['全部', '上传数据审核', '案例使用审核', '定制需求申请审核'],
-        'staus|1': ['全部', '未完结', '已完结'],
-        remark: Random.cparagraph(1, 3),
-    }))
-})
-
 
 const mock = {
     getList: Mock.mock('/getList', 'post', {
@@ -34,7 +15,21 @@ const mock = {
             'userId|5': '',
         }],
     }),
-    getList2: Mock.mock('/getList2', 'get', () => list),
+    getList2: Mock.mock('/homeTable', 'get', {
+        success: true,
+        message: Random.cparagraph(1),
+        'list|10': [{
+            'id|+1': 0,
+            'age|16-28': 18,
+            time: Random.datetime(),
+            name: '@cname',
+            telphone: /^1[0-9]{10}$/,
+            email: Random.email(),
+            'type|1': ['全部', '上传数据审核', '案例使用审核', '定制需求申请审核'],
+            'staus|1': ['全部', '未完结', '已完结'],
+            remark: Random.cparagraph(1, 3),
+        }],
+    }),
 }
 
 export default mock
