@@ -74,12 +74,12 @@ body {
 
 .appAppear-appear {
   opacity: 0;
-  transform: scale(0);
+  /* transform: scale(0); */
 }
 
 .appAppear-appear.appAppear-appear-active {
   opacity: 1;
-  transform: scale(1);
+  /* transform: scale(1); */
   transition: 500ms ease-out;
 }
 

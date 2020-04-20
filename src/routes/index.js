@@ -7,13 +7,12 @@ import {
 } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { history } from '../history'
 import { isLoginMethod } from '../config/permission'
 import AuthorizedRoute from '../pages/AuthorizedRoute'
+import Common from '../pages/common'
 import Layout from '../pages/layout'
 import login from '../pages/login'
-import menu from '../pages/menu'
 
 class routes extends Component {
     render() {
@@ -24,6 +23,7 @@ class routes extends Component {
                     <Switch>
                         <Route path="/login" component={login} render={isLoginMethod(isLogin)} />
                         <AuthorizedRoute path="/admin" component={Layout} />
+                        <Route path="/common" component={Common} />
                         <Redirect to="/admin" />
                         {/* <Route
                             path="/admin"

@@ -4,16 +4,21 @@ import {
     Row, Col, Card, Table, Popconfirm, Button,
     Icon,
 } from 'antd'
+import utils from '../../utils'
 import { homeTable, getList } from '../../api/index'
 
+const { pagination } = utils
 class ExampleAnimations extends React.Component {
+    params = {
+        page: 1,
+    }
+
     constructor(props) {
         super(props)
         this.columns = [
             {
                 title: 'name',
                 dataIndex: 'name',
-                width: '30%',
             },
             {
                 title: 'age',
@@ -21,6 +26,7 @@ class ExampleAnimations extends React.Component {
             },
             {
                 title: 'email',
+                ellipsis: true,
                 dataIndex: 'email',
             },
             {
@@ -73,7 +79,12 @@ class ExampleAnimations extends React.Component {
     getTableList = () => {
         homeTable().then((res) => {
             this.setState({
-                dataSource: res.list,
+                dataSource: res.result.list,
+                pagination: pagination(res.result, (current) => {
+                    // to-do
+                    console.log(current)
+                    console.log(this.params)
+                }),
             })
         })
     }
@@ -83,7 +94,7 @@ class ExampleAnimations extends React.Component {
     }
 
     renderClassName = (record, index) => {
-        // if (this.state.deleteIndex === record.key) return 'animated zoomOutLeft min-black'
+        if (this.state.deleteIndex === record.key) return 'animated zoomOutLeft min-black'
         if (this.state.flag && record.id === this.state.deleteIndex) return 'animated fadeOutLeft'
         return 'animated fadeInRight'
     }
@@ -103,8 +114,9 @@ class ExampleAnimations extends React.Component {
                                     bordered
                                     dataSource={dataSource}
                                     columns={columns}
-                                    pagination={20}
+                                    pagination={this.state.pagination}
                                     rowKey={(record) => record.id}
+                                    // scroll={{ y: 400, x: 1340 }}
                                     rowClassName={(record, index) => this.renderClassName(record, index)}
                                 />
                             </Card>

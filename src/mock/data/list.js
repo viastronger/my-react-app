@@ -18,17 +18,23 @@ const mock = {
     getList2: Mock.mock('/homeTable', 'get', {
         success: true,
         message: Random.cparagraph(1),
-        'list|10': [{
-            'id|+1': 0,
-            'age|16-28': 18,
-            time: Random.datetime(),
-            name: '@cname',
-            telphone: /^1[0-9]{10}$/,
-            email: Random.email(),
-            'type|1': ['全部', '上传数据审核', '案例使用审核', '定制需求申请审核'],
-            'staus|1': ['全部', '未完结', '已完结'],
-            remark: Random.cparagraph(1, 3),
-        }],
+        result: {
+            'list|10': [{
+                'id|+1': 0,
+                'age|16-28': 18,
+                time: Random.datetime(),
+                name: '@cname',
+                telphone: /^1[0-9]{10}$/,
+                email: Random.email(),
+                'type|1': ['全部', '上传数据审核', '案例使用审核', '定制需求申请审核'],
+                'staus|1': ['全部', '未完结', '已完结'],
+                remark: Random.cparagraph(1, 3),
+            }],
+            total: 189,
+            currentPage: 1,
+            pageSize: 10,
+        },
+
     }),
 }
 

@@ -9,7 +9,7 @@ import { history } from '../history'
  */
 function transformRequestFun(data) {
     let ret = ''
-    Object.keys(data).forEach((item) => {
+    data && Object.keys(data).forEach((item) => {
         if (typeof data[item] === 'object' || Array.isArray(data[item])) {
             data[item] = JSON.stringify(data[item])
         }
@@ -71,7 +71,6 @@ AJAX.interceptors.request.use(
         if (config.method === 'post' || config.method === 'PUT' || config.method === 'PATCH' || config.method === 'DELETE') {
             // config.data = { ...config.data }
         }
-        console.log(config)
         return config
     },
     // eslint-disable-next-line
@@ -105,7 +104,7 @@ AJAX.interceptors.response.use(
             })
             return Promise.reject(response.data)
         }
-        if (data.retCode !== 0) {
+        if (data.retCode !== 0 && !data.success) {
             message.warning(data.msg)
             return Promise.reject(data)
         }
