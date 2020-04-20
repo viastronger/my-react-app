@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactEcharts from 'echarts-for-react';
+import React from 'react'
+import ReactEcharts from 'echarts-for-react'
 
 const option = {
     title: {
@@ -36,9 +36,7 @@ const option = {
                 { value: 274, name: '联盟广告' },
                 { value: 235, name: '视频广告' },
                 { value: 400, name: '搜索引擎' },
-            ].sort(function(a, b) {
-                return a.value - b.value;
-            }),
+            ].sort((a, b) => a.value - b.value),
             roseType: 'angle',
             label: {
                 normal: {
@@ -67,19 +65,19 @@ const option = {
 
             animationType: 'scale',
             animationEasing: 'elasticOut',
-            animationDelay: function(idx) {
-                return Math.random() * 200;
+            animationDelay(idx) {
+                return Math.random() * 200
             },
         },
     ],
-};
+}
 
 const EchartsPie = () => (
     <ReactEcharts
         option={option}
         style={{ height: '300px', width: '100%' }}
-        className={'react_for_echarts'}
+        className="react_for_echarts"
     />
-);
+)
 
-export default EchartsPie;
+export default EchartsPie

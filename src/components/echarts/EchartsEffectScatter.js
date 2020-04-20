@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import ReactEcharts from 'echarts-for-react';
-require('echarts/map/js/china.js');
+import React, { Component } from 'react'
+import ReactEcharts from 'echarts-for-react'
+
+require('echarts/map/js/china.js')
 
 const data = [
     { name: '海门', value: 9 },
@@ -193,7 +194,7 @@ const data = [
     { name: '合肥', value: 229 },
     { name: '武汉', value: 273 },
     { name: '大庆', value: 279 },
-];
+]
 const geoCoordMap = {
     海门: [121.15, 31.89],
     鄂尔多斯: [109.781327, 39.608266],
@@ -385,21 +386,22 @@ const geoCoordMap = {
     合肥: [117.27, 31.86],
     武汉: [114.31, 30.52],
     大庆: [125.03, 46.58],
-};
+}
 
-const convertData = function(data) {
-    let res = [];
-    for (let i = 0; i < data.length; i++) {
-        let geoCoord = (geoCoordMap)[data[i].name];
+// eslint-disable-next-line func-names
+const convertData = function (params) {
+    const res = []
+    for (let i = 0; i < params.length; i++) {
+        const geoCoord = (geoCoordMap)[params[i].name]
         if (geoCoord) {
             res.push({
-                name: data[i].name,
-                value: geoCoord.concat(data[i].value),
-            });
+                name: params[i].name,
+                value: geoCoord.concat(params[i].value),
+            })
         }
     }
-    return res;
-};
+    return res
+}
 
 const option = {
     backgroundColor: '#404a59',
@@ -448,8 +450,8 @@ const option = {
             type: 'scatter',
             coordinateSystem: 'geo',
             data: convertData(data),
-            symbolSize: function(val) {
-                return val[2] / 10;
+            symbolSize(val) {
+                return val[2] / 10
             },
             label: {
                 normal: {
@@ -473,13 +475,11 @@ const option = {
             coordinateSystem: 'geo',
             data: convertData(
                 data
-                    .sort(function(a, b) {
-                        return b.value - a.value;
-                    })
-                    .slice(0, 6)
+                    .sort((a, b) => b.value - a.value)
+                    .slice(0, 6),
             ),
-            symbolSize: function(val) {
-                return val[2] / 10;
+            symbolSize(val) {
+                return val[2] / 10
             },
             showEffectOn: 'render',
             rippleEffect: {
@@ -503,17 +503,17 @@ const option = {
             zlevel: 1,
         },
     ],
-};
+}
 class EchartsEffectScatter extends Component {
     render() {
         return (
             <ReactEcharts
                 option={option}
                 style={{ height: '400px', width: '100%' }}
-                className={'react_for_echarts'}
+                className="react_for_echarts"
             />
-        );
+        )
     }
 }
 
-export default EchartsEffectScatter;
+export default EchartsEffectScatter

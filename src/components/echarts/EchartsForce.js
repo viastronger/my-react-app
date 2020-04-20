@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import ReactEcharts from 'echarts-for-react';
+import React, { Component } from 'react'
+import ReactEcharts from 'echarts-for-react'
 
 const option = {
     title: {
@@ -228,17 +228,17 @@ const option = {
             },
         },
     ],
-};
+}
 class EchartsForce extends Component {
     render() {
         return (
             <ReactEcharts
                 option={option}
                 style={{ height: '300px', width: '100%' }}
-                className={'react_for_echarts'}
+                className="react_for_echarts"
             />
-        );
+        )
     }
 }
 
-export default EchartsForce;
+export default EchartsForce

@@ -1,68 +1,76 @@
 const siderBar = [
     {
-        path: 'home',
+        path: '/admin/home',
         id: '1',
         iconType: 'windows',
         title: '首页',
     },
     {
         id: '2',
-        path: 'route2',
+        path: '/admin/ui',
         iconType: 'user',
         title: '路由2',
         children: [
             {
-                path: 'route2/asf',
+                path: '/admin/ui/asf',
                 id: '2-1',
                 iconType: 'user',
                 title: '路由2-2',
                 children: [
                     {
-                        path: 'route2/asf/sanji1',
+                        path: '/admin/ui/button',
                         id: '2-1-1',
                         iconType: 'user',
-                        title: '路由2-2-1',
+                        title: 'button',
                     },
                     {
-                        path: 'route2/asf/sanji2',
+                        path: '/admin/ui/modal',
                         id: '2-1-2',
                         iconType: 'user',
-                        title: '路由2-2-1',
+                        title: 'modal',
                     },
                     {
-                        path: 'route2/asf/sanji3',
+                        path: '/admin/ui/tab',
                         id: '2-1-3',
                         iconType: 'user',
-                        title: '路由2-2-1',
+                        title: 'tab',
                     },
                     {
-                        path: 'route2/asf/sanji4',
+                        path: '/admin/ui/gallery',
                         id: '2-1-4',
                         iconType: 'user',
-                        title: '路由2-2-1',
+                        title: 'gallery',
                     },
                 ],
             },
         ],
     },
     {
-        path: 'echarts',
+        path: '/admin/echarts',
         id: '3',
         iconType: 'area-chart',
         title: '图表',
     },
     {
-        path: 'route4',
+        path: '/admin/form',
         id: '4',
         iconType: 'laptop',
-        title: '路由4',
+        title: 'form',
+        children: [
+            {
+                path: '/admin/form/formLogin',
+                id: '4-1',
+                iconType: 'user',
+                title: 'formLogin',
+            },
+        ],
     },
     {
-        path: 'route5',
+        path: '/admin/route5',
         id: '5',
         iconType: 'notification',
         title: '路由5',
     },
-];
+]
 
-export default siderBar;
+export default siderBar

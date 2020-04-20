@@ -1,146 +1,115 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
 .ant-layout {
-    height: 100%;
+  height: 100vh;
 }
 
 .ant-tag {
-    border: none;
+  border: none;
 }
 
 .ant-tag.active {
-    color: white;
-    background-color: tomato;
-}
-
-.mask {
-    position: fixed;
-    background-color: rgb(0, 0, 0);
-    opacity: 0;
-    width: 0;
-    height: 0;
-    top: 0;
-    left: 0;
-    z-index: 90;
-    transition: opacity 0.2s cubic-bezier(0.78, 0.14, 0.15, 0.86);
-}
-
-.mask.show {
-    width: 100%;
-    height: 100%;
-    opacity: .3;
-}
-
-/* ************ */
-
-.sider-bar {
-    background: #fff;
-    overflow-y: auto;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-}
-
-.sider-bar.hide {
-    left: -100%;
-}
-
-.sider-bar.hide.phoneCollapsed {
-    left: 0;
+  color: white;
+  background-color: tomato;
 }
 
 /* ************ */
 
 .container-layout {
-    transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 @media screen and (min-width: 992px) {
-    .ant-layout.collapsed {
-        margin-left: 80px !important;
-    }
+  .ant-layout.collapsed {
+    margin-left: 80px !important;
+  }
 }
 
 @media screen and (max-width: 992px) {
-    .container-layout {
-        margin-left: 0 !important;
-    }
-    .sider-bar {
-        z-index: 99;
-    }
+  .container-layout {
+    margin-left: 0 !important;
+  }
+  .sider-bar {
+    z-index: 99;
+  }
 }
 
 /* ************ */
 
 .ant-tag:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
-.ant-menu-inline .ant-menu-item, .ant-menu-inline .ant-menu-submenu-title {
-    width: 100%;
+.ant-menu-inline .ant-menu-item,
+.ant-menu-inline .ant-menu-submenu-title {
+  width: 100%;
 }
 
 .gutter-box {
-    padding: 5px 0;
+  padding: 5px 0;
 }
 
 #components-layout-demo-custom-trigger .trigger {
-    font-size: 18px;
-    line-height: 64px;
-    padding: 0 24px;
-    cursor: pointer;
-    transition: color 0.3s;
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
 #components-layout-demo-custom-trigger .trigger:hover {
-    color: #1890ff;
+  color: #1890ff;
 }
 
 #components-layout-demo-custom-trigger .logo {
-    height: 32px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
 }
 
 /* ****************/
 
 .appAppear-appear {
-    opacity: 0;
-    transform: scale(0);
+  opacity: 0;
+  /* transform: scale(0); */
 }
 
 .appAppear-appear.appAppear-appear-active {
-    opacity: 1;
-    transform: scale(1);
-    transition: 500ms ease-out;
+  opacity: 1;
+  /* transform: scale(1); */
+  transition: 500ms ease-out;
 }
 
 /*设置进场前透明度为0，放缩为0*/
-
 .fade-enter {
-    opacity: 0;
-    transform: translateX(-30px);
+  opacity: 0;
+  transform: translateX(-30px);
 }
 
 /*设置进场过程中 透明度为1，放缩为1，放缩的位置为左上角，持续时间为500ms，时间曲是ease-out */
 
 .fade-enter.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    /* transform-origin: top left; */
-    transition: 800ms ease-out;
+  opacity: 1;
+  transform: translateX(0);
+  /* transform-origin: top left; */
+  transition: 800ms ease-out;
 }
 
 /*设置退场前透明度为1，放缩为1*/
 
 .fade-exit {
-    opacity: 1;
-    transform: translateX(0);
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /*设置退场过程中 透明度为0，放缩为0，放缩的位置默认是中间，所以不设置也可以，
   持续时间为500ms，时间曲是ease-out */
 
 .fade-exit.fade-exit-active {
-    opacity: 0;
-    transform: translateX(30px);
-    transition: 100ms ease-out;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: 100ms ease-out;
 }

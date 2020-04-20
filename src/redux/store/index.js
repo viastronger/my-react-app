@@ -4,7 +4,7 @@ import setting from '../reducers/setting'
 
 const rootReducer = combineReducers({
     tagsView,
-    setting
+    setting,
 })
 
 const store = createStore(rootReducer)

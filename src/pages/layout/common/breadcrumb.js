@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Breadcrumb } from 'antd';
+import { Breadcrumb } from 'antd'
 
 const breadcrumb = {
     display: 'inline-block',
     marginLeft: 20,
     color: 'white',
-};
+}
 
 class BreadcrumbCom extends React.Component {
     render() {
@@ -27,4 +27,3 @@ class BreadcrumbCom extends React.Component {
 
 
 export default connect(null, null)(BreadcrumbCom)
-
