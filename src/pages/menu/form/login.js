@@ -69,7 +69,7 @@ class NormalLoginForm extends Component {
     }
 }
 NormalLoginForm.propTypes = {
-    form: PropTypes.PropTypes.objectOf(PropTypes.any).isRequired,
+    form: PropTypes.objectOf(PropTypes.any).isRequired,
 }
 
 // NormalLoginForm.defaultProps = {}

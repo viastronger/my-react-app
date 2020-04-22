@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import login from './login'
+import detail from './detail/detail'
 
 class Common extends React.Component {
     render() {
@@ -9,7 +9,7 @@ class Common extends React.Component {
             <div>
                 <div>asdfasdjf</div>
                 <Switch>
-                    <Route path="/common/order/detail/:id" component={login} />
+                    <Route path="/common/order/detail/:id" component={detail} />
                 </Switch>
             </div>
         )

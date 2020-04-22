@@ -1,17 +1,42 @@
 
 import React from 'react'
 import {
-    Row, Col, Card, Table, Popconfirm, Button,
+    Row,
+    Col,
+    Card,
+    Table,
+    Popconfirm,
+    Button,
     Icon,
 } from 'antd'
-import utils from '../../utils'
+import BaseForm from '../../components/baseForm'
 import { homeTable, getList } from '../../api/index'
+import utils from '../../utils'
 
 const { pagination } = utils
 class ExampleAnimations extends React.Component {
     params = {
         page: 1,
     }
+
+    formList = [
+        {
+            type: 'SELECT',
+            label: '城市',
+            field: 'city',
+            placeholder: '全部',
+            initValue: '2',
+            width: 200,
+            list: [{ id: '1', name: '北京' }, { id: '2', name: '上海' }, { id: '3', name: '广州' }],
+        },
+        {
+            type: 'DATEPICKER',
+            label: '时间',
+            field: 'time-picker',
+            placeholder: '',
+            width: 200,
+        },
+    ]
 
     constructor(props) {
         super(props)
@@ -104,6 +129,13 @@ class ExampleAnimations extends React.Component {
         const { columns } = this
         return (
             <div className="gutter-example">
+                <Row>
+                    <Col md={24}>
+                        <Card>
+                            <BaseForm formList={this.formList} layout="inline" />
+                        </Card>
+                    </Col>
+                </Row>
                 <Row gutter={16}>
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">

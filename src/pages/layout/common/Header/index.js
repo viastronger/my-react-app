@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import Tags from '../tags'
 import Breadcrumb from '../breadcrumb'
 import Axios from '../../../../api/jsonp'
+import { getWeather } from '../../../../api'
 import './index.less'
 
 const {
@@ -26,12 +27,14 @@ class Head extends React.Component {
 
     componentDidMount() {
         const { ak } = this.props
-        // this.getWeather(ak)
+        this.getWeather(ak)
     }
 
     getWeather = (ak) => {
-        Axios.jsonp({
-            url: `http://api.map.baidu.com/weather/v1/?district_id=222405&data_type=all&ak=${ak}`,
+        getWeather({
+            district_id: 222405,
+            data_type: 'all',
+            ak,
         }).then((res) => {
             console.log(res)
         })

@@ -22,12 +22,12 @@ const AJAX = axios.create({
     // baseURL: baseUrl.url,
     timeout: 30000,
     // withCredentials: env.credential
-    Accept: 'application/json',
-    responseType: 'json',
-    transformRequest: [function (data) {
-        const data1 = transformRequestFun(data)
-        return data1
-    }],
+    // Accept: 'application/json',
+    // responseType: 'json',
+    // transformRequest: [function (data) {
+    //     const data1 = transformRequestFun(data)
+    //     return data1
+    // }],
 })
 
 // // 当前正在请求的数量
@@ -104,7 +104,7 @@ AJAX.interceptors.response.use(
             })
             return Promise.reject(response.data)
         }
-        if (data.retCode !== 0 && !data.success) {
+        if (data.retCode !== 0 && !data.success && data.status !== 0) {
             message.warning(data.msg)
             return Promise.reject(data)
         }

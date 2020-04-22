@@ -9,7 +9,7 @@ export default class Axios {
                 if (response.status === 'success') {
                     resolve(response)
                 } else {
-                    reject(response.message)
+                    reject(response.messsage)
                 }
             })
         })
