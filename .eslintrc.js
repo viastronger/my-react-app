@@ -63,6 +63,7 @@ module.exports = {
         'react/destructuring-assignment': "off",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/prefer-stateless-function": 0,
+        "react/jsx-one-expression-per-line": 0,
     },
     "settings": {
         "react": {

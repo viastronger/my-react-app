@@ -83,7 +83,7 @@ module.exports = function (webpackEnv) {
     const env = getClientEnvironment(publicUrl)
 
     // common function to get style loaders
-    const getStyleLoaders = (cssOptions, preProcessor,lessOptions = {}) => {
+    const getStyleLoaders = (cssOptions, preProcessor, lessOptions = {}) => {
         const loaders = [
             isEnvDevelopment && require.resolve('style-loader'),
             isEnvProduction && {
@@ -350,7 +350,8 @@ module.exports = function (webpackEnv) {
                                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                                 eslintPath: require.resolve('eslint'),
                                 resolvePluginsRelativeTo: __dirname,
-
+                                // configFile: path.resolve(__dirname, '../.eslintrc.js'),
+                                useEslintrc: true,
                             },
                             loader: require.resolve('eslint-loader'),
                         },
@@ -512,12 +513,12 @@ module.exports = function (webpackEnv) {
                                 {
                                     importLoaders: 2,
                                     sourceMap: isEnvProduction && shouldUseSourceMap,
-                                    
+
                                 },
                                 'less-loader',
                                 {
-                                    modifyVars:{
-                                        '@primary-color':'#f9c700'
+                                    modifyVars: {
+                                        '@primary-color': '#f9c700'
                                     }
                                 }
                             ),
@@ -706,6 +707,6 @@ module.exports = function (webpackEnv) {
         // Turn off performance processing because we utilize
         // our own hints via the FileSizeReporter
         performance: false,
-        
+
     }
 }

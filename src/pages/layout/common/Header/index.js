@@ -91,15 +91,7 @@ class Head extends React.Component {
                     </Col>
                     <Col span={12}>
                         <p>
-                            {pos},
-                            天气：
-                            {weather}
-                            ，
-                            风向：
-                            {windDir}
-                            ，
-                            风力等级：
-                            {windClass}
+                            {pos},天气：{weather}，风向：{windDir}，风力等级：{windClass}
                         </p>
                     </Col>
                 </Row>
