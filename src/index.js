@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker'
 import './mock'
 import Routes from './routes'
 import './less/index.less'
+import './less/reset.css'
 import 'animate.css'
 
 ReactDOM.render((

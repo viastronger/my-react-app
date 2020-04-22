@@ -10,7 +10,6 @@ import {
 import { connect } from 'react-redux'
 import Tags from '../tags'
 import Breadcrumb from '../breadcrumb'
-import Axios from '../../../../api/jsonp'
 import { getWeather } from '../../../../api'
 import './index.less'
 
@@ -21,7 +20,12 @@ const {
 class Head extends React.Component {
     constructor() {
         super()
-        this.state = {}
+        this.state = {
+            pos: '',
+            weather: '',
+            windDir: '',
+            windClass: '',
+        }
         this.changeHeight = this.changeHeight.bind(this)
     }
 
@@ -32,11 +36,19 @@ class Head extends React.Component {
 
     getWeather = (ak) => {
         getWeather({
-            district_id: 222405,
+            district_id: 330100,
             data_type: 'all',
             ak,
         }).then((res) => {
             console.log(res)
+            const { location, now } = res.result
+            const pos = `${location.country}${location.province}${location.city}${location.name}`
+            this.setState({
+                pos,
+                weather: now.text,
+                windDir: now.wind_dir,
+                windClass: now.wind_class,
+            })
         })
     }
 
@@ -54,6 +66,12 @@ class Head extends React.Component {
             tags,
             isMobile,
         } = this.props
+        const {
+            pos,
+            weather,
+            windDir,
+            windClass,
+        } = this.state
         const antHeader = this.changeHeight(tags)
         return (
             <Header
@@ -63,7 +81,7 @@ class Head extends React.Component {
                 }}
             >
                 <Row>
-                    <Col span={14}>
+                    <Col span={12}>
                         <Button type="primary" onClick={toggleCollapsed} size="small">
                             <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
                         </Button>
@@ -71,8 +89,18 @@ class Head extends React.Component {
                             !isMobile ? <Breadcrumb /> : null
                         }
                     </Col>
-                    <Col span={10}>
-                        kdl
+                    <Col span={12}>
+                        <p>
+                            {pos},
+                            天气：
+                            {weather}
+                            ，
+                            风向：
+                            {windDir}
+                            ，
+                            风力等级：
+                            {windClass}
+                        </p>
                     </Col>
                 </Row>
                 {
