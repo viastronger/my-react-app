@@ -25,27 +25,6 @@ class routes extends Component {
                         <AuthorizedRoute path="/admin" component={Layout} />
                         <Route path="/common" component={Common} />
                         <Redirect to="/admin" />
-                        {/* <Route
-                            path="/admin"
-                            render={({ history, location, match }) => (
-                                <Layout history={history} location={location} match={match}>
-                                    <TransitionGroup>
-                                        <CSSTransition
-                                            key={location.pathname}
-                                            classNames="fade"
-                                            timeout={800}
-                                        >
-                                            <div>
-                                                <Switch location={location}>
-                                                    <Route path="/admin/echarts" component={menu.echarts} />
-                                                    <Route path="/admin/home" component={menu.home} />
-                                                </Switch>
-                                            </div>
-                                        </CSSTransition>
-                                    </TransitionGroup>
-                                </Layout>
-                            )}
-                        /> */}
                     </Switch>
                 </Router>
             </div>
