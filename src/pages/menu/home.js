@@ -153,9 +153,10 @@ class ExampleAnimations extends React.Component {
                                     dataSource={dataSource}
                                     columns={columns}
                                     rowKey={(record) => record.id}
-                                    rowSelection="checkbox"
+                                    rowSelection
                                     selectedRowKeys={selectedRowKeys}
                                     selectedIds={selectedIds}
+                                    rowClassName={(record, index) => this.renderClassName(record, index)}
                                 />
                                 {/* <Table
                                     bordered
