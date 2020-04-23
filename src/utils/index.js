@@ -27,4 +27,18 @@ export default {
         })
         return options
     },
+    updateSelectItem(selectedRowKeys, selectedRows, selectedIds) {
+        if (selectedIds) {
+            this.setState({
+                selectedRowKeys,
+                selectedRows,
+                selectedIds,
+            })
+        } else {
+            this.setState({
+                selectedRowKeys,
+                selectedRows,
+            })
+        }
+    },
 }

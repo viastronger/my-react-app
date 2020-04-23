@@ -40,7 +40,6 @@ class Head extends React.Component {
             data_type: 'all',
             ak,
         }).then((res) => {
-            console.log(res)
             const { location, now } = res.result
             const pos = `${location.country}${location.province}${location.city}${location.name}`
             this.setState({
@@ -91,7 +90,7 @@ class Head extends React.Component {
                     </Col>
                     <Col span={12}>
                         <p>
-                            {pos},天气：{weather}，风向：{windDir}，风力等级：{windClass}
+                            {pos}，天气：{weather}，风向：{windDir}，风力等级：{windClass}
                         </p>
                     </Col>
                 </Row>

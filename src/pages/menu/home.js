@@ -10,6 +10,7 @@ import {
     Icon,
 } from 'antd'
 import BaseForm from '../../components/baseForm'
+import MyTable from '../../components/myTable'
 import { homeTable, getList } from '../../api/index'
 import utils from '../../utils'
 
@@ -18,6 +19,34 @@ class ExampleAnimations extends React.Component {
     params = {
         page: 1,
     }
+
+    columns = [
+        {
+            title: 'name',
+            dataIndex: 'name',
+        },
+        {
+            title: 'age',
+            dataIndex: 'age',
+        },
+        {
+            title: 'email',
+            ellipsis: true,
+            dataIndex: 'email',
+        },
+        {
+            title: 'operation',
+            dataIndex: 'operation',
+            render: (text, record, index) => (this.state.dataSource.length > 1 ? (
+                <Popconfirm
+                    title="Sure to delete?"
+                    onConfirm={() => this.onDelete(record, index)}
+                >
+                    <Icon type="delete" />
+                </Popconfirm>
+            ) : null),
+        },
+    ]
 
     formList = [
         {
@@ -40,38 +69,15 @@ class ExampleAnimations extends React.Component {
 
     constructor(props) {
         super(props)
-        this.columns = [
-            {
-                title: 'name',
-                dataIndex: 'name',
-            },
-            {
-                title: 'age',
-                dataIndex: 'age',
-            },
-            {
-                title: 'email',
-                ellipsis: true,
-                dataIndex: 'email',
-            },
-            {
-                title: 'operation',
-                dataIndex: 'operation',
-                render: (text, record, index) => (this.state.dataSource.length > 1 ? (
-                    <Popconfirm
-                        title="Sure to delete?"
-                        onConfirm={() => this.onDelete(record, index)}
-                    >
-                        <Icon type="delete" />
-                    </Popconfirm>
-                ) : null),
-            },
-        ]
         this.state = {
+            selectedRowKeys: [],
+            selectedIds: [],
+            selectedRows: [],
             dataSource: [],
             count: 2,
             deleteIndex: -1,
         }
+        this.updateSelectItem = utils.updateSelectItem.bind(this)
     }
 
     componentDidMount() {
@@ -125,7 +131,7 @@ class ExampleAnimations extends React.Component {
     }
 
     render() {
-        const { dataSource } = this.state
+        const { dataSource, selectedRowKeys, selectedIds } = this.state
         const { columns } = this
         return (
             <div className="gutter-example">
@@ -142,7 +148,16 @@ class ExampleAnimations extends React.Component {
                             <Card bordered={false}>
                                 {/* <Button type="primary" onClick={this.handleAdd}>Add</Button> */}
                                 <Button type="primary" onClick={this.reload}>reload</Button>
-                                <Table
+                                <MyTable
+                                    updateSelectItem={this.updateSelectItem}
+                                    dataSource={dataSource}
+                                    columns={columns}
+                                    rowKey={(record) => record.id}
+                                    rowSelection="checkbox"
+                                    selectedRowKeys={selectedRowKeys}
+                                    selectedIds={selectedIds}
+                                />
+                                {/* <Table
                                     bordered
                                     dataSource={dataSource}
                                     columns={columns}
@@ -150,7 +165,7 @@ class ExampleAnimations extends React.Component {
                                     rowKey={(record) => record.id}
                                     // scroll={{ y: 400, x: 1340 }}
                                     rowClassName={(record, index) => this.renderClassName(record, index)}
-                                />
+                                /> */}
                             </Card>
                         </div>
                     </Col>
