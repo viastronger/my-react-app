@@ -1,14 +1,16 @@
 
 import React from 'react'
+import { DeleteOutlined } from '@ant-design/icons'
+// import { Form } from '@ant-design/compatible'
+import '@ant-design/compatible/assets/index.css'
 import {
+    Form,
     Row,
     Col,
     Card,
     Table,
     Popconfirm,
-    Form,
     Button,
-    Icon,
     Modal,
 } from 'antd'
 import BaseForm from '../../components/baseForm'
@@ -48,7 +50,7 @@ class ExampleAnimations extends React.Component {
                     title="Sure to delete?"
                     onConfirm={() => this.onDelete(record, index)}
                 >
-                    <Icon type="delete" />
+                    <DeleteOutlined />
                 </Popconfirm>
             ) : null),
         },
@@ -98,7 +100,7 @@ class ExampleAnimations extends React.Component {
         setTimeout(() => {
             this.setState({ dataSource, flag: false })
         }, 500)
-    };
+    }
 
     handleAdd = () => {
         const { count, dataSource } = this.state
@@ -112,7 +114,7 @@ class ExampleAnimations extends React.Component {
             dataSource: [newData, ...dataSource],
             count: count + 1,
         })
-    };
+    }
 
     getTableList = () => {
         homeTable().then((res) => {
@@ -148,6 +150,10 @@ class ExampleAnimations extends React.Component {
         console.log(getValue)
     }
 
+    baseFormSubmit = (values) => {
+        console.log(values)
+    }
+
     render() {
         const { dataSource, selectedRowKeys, selectedIds } = this.state
         const { columns } = this
@@ -174,7 +180,7 @@ class ExampleAnimations extends React.Component {
                 <Row>
                     <Col md={24}>
                         <Card>
-                            <BaseForm formList={this.formList} layout="inline" />
+                            <BaseForm formList={this.formList} layout="inline" formSubmit={this.baseFormSubmit} />
                         </Card>
                     </Col>
                 </Row>
