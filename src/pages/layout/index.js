@@ -94,7 +94,7 @@ class layout extends React.Component {
                                         <Route path="/admin/ui/tab" component={menu.tab} />
                                         <Route path="/admin/ui/gallery" component={menu.gallery} />
                                         <Route path="/admin/form/formLogin" component={menu.formLogin} />
-                                        <Route exact path="/admin/route2" component={menu.route2} />
+                                        <Route exact path="/admin/uedit" component={menu.uedit} />
                                         <Route component={Nomatch} />
                                     </Switch>
                                 </div>

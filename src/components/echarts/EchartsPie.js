@@ -1,5 +1,9 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react'
+// import echarts from 'echarts/lib/echarts'
+// import 'echarts/lib/component/tooltip'
+// import 'echarts/lib/component/title'
+// import 'echarts/lib/chart/pie'
 
 const option = {
     title: {

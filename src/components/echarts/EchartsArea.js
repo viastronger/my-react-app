@@ -1,6 +1,10 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react'
-import echarts from 'echarts'
+// import echarts from 'echarts'
+import echarts from 'echarts/lib/echarts'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/title'
+import 'echarts/lib/component/markArea'
 
 let base = +new Date(1968, 9, 3)
 const oneDay = 24 * 3600 * 1000

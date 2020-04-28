@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { Row, Col, Card } from 'antd'
-// import EchartsArea from '../../components/echarts/EchartsArea'
+import EchartsArea from '../../components/echarts/EchartsArea'
 import EchartsForce from '../../components/echarts/EchartsForce'
 import EchartsPie from '../../components/echarts/EchartsPie'
 import EchartsEffectScatter from '../../components/echarts/EchartsEffectScatter'

@@ -66,10 +66,10 @@ const siderBar = [
         ],
     },
     {
-        path: '/admin/route5',
+        path: '/admin/uedit',
         id: '5',
         iconType: 'notification',
-        title: '路由5',
+        title: '富文本',
     },
 ]
 

@@ -6,8 +6,10 @@ import {
     Card,
     Table,
     Popconfirm,
+    Form,
     Button,
     Icon,
+    Modal,
 } from 'antd'
 import BaseForm from '../../components/baseForm'
 import MyTable from '../../components/myTable'
@@ -28,6 +30,10 @@ class ExampleAnimations extends React.Component {
         {
             title: 'age',
             dataIndex: 'age',
+            // render(age) {
+            //     console.log(age)
+            //     return age
+            // },
         },
         {
             title: 'email',
@@ -76,6 +82,7 @@ class ExampleAnimations extends React.Component {
             dataSource: [],
             count: 2,
             deleteIndex: -1,
+            visible: false,
         }
         this.updateSelectItem = utils.updateSelectItem.bind(this)
     }
@@ -130,9 +137,38 @@ class ExampleAnimations extends React.Component {
         return 'animated fadeInRight'
     }
 
+    showForm = () => {
+        this.setState({
+            visible: true,
+        })
+    }
+
+    handleSubmit = () => {
+        const getValue = this.userForm.props.form.getFieldsValue()
+        console.log(getValue)
+    }
+
     render() {
         const { dataSource, selectedRowKeys, selectedIds } = this.state
         const { columns } = this
+        const formList = [
+            {
+                type: 'INPUT',
+                label: '城市',
+                field: 'city',
+                placeholder: '全部',
+                initValue: '2',
+                width: 200,
+            },
+            {
+                type: 'INPUT',
+                label: '城市',
+                field: 'as',
+                placeholder: '全部',
+                initValue: '2',
+                width: 200,
+            },
+        ]
         return (
             <div className="gutter-example">
                 <Row>
@@ -147,6 +183,7 @@ class ExampleAnimations extends React.Component {
                         <div className="gutter-box">
                             <Card bordered={false}>
                                 {/* <Button type="primary" onClick={this.handleAdd}>Add</Button> */}
+                                <Button type="primary" onClick={this.showForm}>新增</Button>
                                 <Button type="primary" onClick={this.reload}>reload</Button>
                                 <MyTable
                                     updateSelectItem={this.updateSelectItem}
@@ -171,9 +208,51 @@ class ExampleAnimations extends React.Component {
                         </div>
                     </Col>
                 </Row>
+                <Modal
+                    visible={this.state.visible}
+                    onOk={this.handleSubmit}
+                    onCancel={() => {
+                        this.setState({
+                            visible: false,
+                        })
+                    }}
+                >
+                    {/* <ModalForm ref={(el) => { this.a = el }} /> */}
+                    {/* <ModalForm wrappedComponentRef={(el) => { this.userForm = el }} /> */}
+                    <BaseForm formList={formList} wrappedComponentRef={(el) => { this.userForm = el }} isShow={false} />
+                </Modal>
             </div>
         )
     }
 }
+
+// class UserForm extends React.Component {
+//     formList = [
+//         {
+//             type: 'INPUT',
+//             label: '城市',
+//             field: 'city',
+//             placeholder: '全部',
+//             initValue: '2',
+//             width: 200,
+//         },
+//         {
+//             type: 'INPUT',
+//             label: '城市',
+//             field: 'as',
+//             placeholder: '全部',
+//             initValue: '2',
+//             width: 200,
+//         },
+//     ]
+
+//     render() {
+//         return (
+//             <BaseForm formList={this.formList} isShow={false} />
+//         )
+//     }
+// }
+
+// const ModalForm = Form.create({})(UserForm)
 
 export default ExampleAnimations

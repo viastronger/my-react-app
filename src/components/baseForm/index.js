@@ -113,15 +113,19 @@ class BaseForm extends Component {
     }
 
     render() {
-        const { layout } = this.props
+        const { layout, isShow } = this.props
         return (
             <ConfigProvider locale={zhCN}>
                 <Form layout={layout}>
                     {this.renderFormIten()}
-                    <FormItem>
-                        <Button type="primaty" onClick={this.handleSubmit}>查询</Button>
-                        <Button type="primaty">重置</Button>
-                    </FormItem>
+                    {
+                        isShow ? (
+                            <FormItem>
+                                <Button type="primaty" onClick={this.handleSubmit}>查询</Button>
+                                <Button type="primaty">重置</Button>
+                            </FormItem>
+                        ) : null
+                    }
                 </Form>
             </ConfigProvider>
         )
@@ -132,9 +136,11 @@ BaseForm.propTypes = {
     form: PropTypes.objectOf(PropTypes.any).isRequired,
     formList: PropTypes.arrayOf(PropTypes.any).isRequired,
     layout: PropTypes.string,
+    isShow: PropTypes.bool,
     // formSubmit: PropTypes.func.isRequired,
 }
 BaseForm.defaultProps = {
     layout: 'horizontal',
+    isShow: true,
 }
-export default Form.create()(BaseForm)
+export default Form.create({})(BaseForm)
