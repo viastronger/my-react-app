@@ -22,9 +22,8 @@ class routes extends Component {
                 <Router history={history}>
                     <Switch>
                         <Route path="/login" component={login} render={isLoginMethod(isLogin)} />
-                        <AuthorizedRoute path="/admin" component={Layout} />
                         <Route path="/common" component={Common} />
-                        <Redirect to="/admin" />
+                        <AuthorizedRoute path="/" component={Layout} />
                     </Switch>
                 </Router>
             </div>

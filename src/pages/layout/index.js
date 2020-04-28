@@ -87,14 +87,15 @@ class layout extends React.Component {
                                     style={{ position: 'absolute', width: '100%' }}
                                 >
                                     <Switch location={location}>
-                                        <Route path="/admin/home" component={menu.home} />
-                                        <Route path="/admin/echarts" component={menu.echarts} />
-                                        <Route path="/admin/ui/button" component={menu.button} />
-                                        <Route path="/admin/ui/modal" component={menu.modal} />
-                                        <Route path="/admin/ui/tab" component={menu.tab} />
-                                        <Route path="/admin/ui/gallery" component={menu.gallery} />
-                                        <Route path="/admin/form/formLogin" component={menu.formLogin} />
-                                        <Route exact path="/admin/uedit" component={menu.uedit} />
+                                        <Route path="/home" component={menu.home} />
+                                        <Route path="/echarts" component={menu.echarts} />
+                                        <Route path="/ui/button" component={menu.button} />
+                                        <Route path="/ui/modal" component={menu.modal} />
+                                        <Route path="/ui/tab" component={menu.tab} />
+                                        <Route path="/ui/gallery" component={menu.gallery} />
+                                        <Route path="/form/formLogin" component={menu.formLogin} />
+                                        <Route exact path="/uedit" component={menu.uedit} />
+                                        <Redirect to="/home" />
                                         <Route component={Nomatch} />
                                     </Switch>
                                 </div>
