@@ -1,3 +1,6 @@
+import actions from '../actions'
+
+const { TagsType } = actions
 
 const initalState = {
     tagFlag: false,
@@ -6,11 +9,11 @@ const initalState = {
 
 const addTags = (tags = initalState.tags, action) => {
     if (tags.some((tag) => tag.key === action.payload.key)) return tags
-    const { type, payload } = action
-    switch (type) {
-    case 'ADD_TAGS':
+    const { payload } = action
+    switch (action.type) {
+    case TagsType.ADD_TAGS:
         return [...tags, payload]
-    case 'REMOVE_TAGS':
+    case TagsType.REMOVE_TAGS:
         return [...payload]
     default:
         return tags

@@ -65,6 +65,7 @@ class siderBar extends React.Component {
     }
 
     changeRoute = (e) => {
+        console.log(this.props.addTags)
         // history.push(`/${e.key}`)
         this.props.addTags(e)
         // 移动端，点击侧边栏后，隐藏侧边栏
