@@ -1,5 +1,6 @@
 ## 更新antd
 antd更新到4，less-loader需要一起更新到6
+项目是npm run eject后的，自定义配置less-loader，antd自定义主题，按需引入
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
