@@ -13,16 +13,19 @@ import {
     Button,
     Modal,
 } from 'antd'
+import utils from '@/utils/index'
 import BaseForm from '../../components/baseForm'
 import MyTable from '../../components/myTable'
 import { homeTable, getList } from '../../api/index'
-import utils from '../../utils'
 
 const { pagination } = utils
+console.log(pagination)
 class ExampleAnimations extends React.Component {
     params = {
         page: 1,
     }
+
+    b = React.createRef()
 
     columns = [
         {
@@ -87,11 +90,18 @@ class ExampleAnimations extends React.Component {
             visible: false,
         }
         this.updateSelectItem = utils.updateSelectItem.bind(this)
+        this.a = React.createRef()
     }
 
     componentDidMount() {
         this.getTableList()
+        // console.log(this.a)
+        // console.log(this.b)
     }
+
+    // getSnapshotBeforeUpdate(prevProps, prevState) { // 组件更新前触发
+    //     console.log(prevProps, prevState)
+    // }
 
     onDelete = (record, index) => {
         const dataSource = [...this.state.dataSource]
@@ -179,7 +189,7 @@ class ExampleAnimations extends React.Component {
             <div className="gutter-example">
                 <Row>
                     <Col md={24}>
-                        <Card>
+                        <Card ref={this.a}>
                             <BaseForm formList={this.formList} layout="inline" formSubmit={this.baseFormSubmit} />
                         </Card>
                     </Col>
@@ -187,7 +197,7 @@ class ExampleAnimations extends React.Component {
                 <Row gutter={16}>
                     <Col className="gutter-row" md={24}>
                         <div className="gutter-box">
-                            <Card bordered={false}>
+                            <Card bordered={false} ref={this.b}>
                                 {/* <Button type="primary" onClick={this.handleAdd}>Add</Button> */}
                                 <Button type="primary" onClick={this.showForm}>新增</Button>
                                 <Button type="primary" onClick={this.reload}>reload</Button>

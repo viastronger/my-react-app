@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Icon as LegacyIcon } from '@ant-design/compatible'
+// import { Icon as LegacyIcon } from '@ant-design/compatible'
 import { Layout, Menu } from 'antd'
 import * as Icon from '@ant-design/icons'
 import PropTypes from 'prop-types'
@@ -83,11 +83,7 @@ class siderBar extends React.Component {
                         title={(
                             <span>
                                 {/* <LegacyIcon type={item.iconType} /> */}
-                                {
-                                    React.createElement(
-                                        Icon[item.iconType],
-                                    )
-                                }
+                                {React.createElement(Icon[item.iconType])}
                                 <span>{item.title}</span>
                             </span>
                         )}
@@ -103,11 +99,7 @@ class siderBar extends React.Component {
                 >
                     <NavLink to={item.path}>
                         {/* <LegacyIcon type={item.iconType} /> */}
-                        {
-                            React.createElement(
-                                Icon[item.iconType],
-                            )
-                        }
+                        {React.createElement(Icon[item.iconType])}
                         <span>{item.title}</span>
                     </NavLink>
                 </Menu.Item>
@@ -132,6 +124,7 @@ class siderBar extends React.Component {
                         />
                     ) : null
                 }
+                <div id="box" />
                 <Sider
                     width={siderWidth}
                     trigger={null}
