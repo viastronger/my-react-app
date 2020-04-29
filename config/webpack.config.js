@@ -83,7 +83,7 @@ module.exports = function (webpackEnv) {
     const env = getClientEnvironment(publicUrl)
 
     // common function to get style loaders
-    const getStyleLoaders = (cssOptions, preProcessor, lessOptions = {}) => {
+    const getStyleLoaders = (cssOptions, preProcessor, lessOptios = {}) => {
         const loaders = [
             isEnvDevelopment && require.resolve('style-loader'),
             isEnvProduction && {
@@ -134,12 +134,12 @@ module.exports = function (webpackEnv) {
                     loader: require.resolve(preProcessor),
                     options: {
                         sourceMap: true,
-                        ...lessOptions
+                        ...lessOptios
                     },
                 },
             )
+
         }
-        console.log(loaders)
         return loaders
     }
 
@@ -384,7 +384,6 @@ module.exports = function (webpackEnv) {
                                 customize: require.resolve(
                                     'babel-preset-react-app/webpack-overrides',
                                 ),
-
                                 plugins: [
                                     [
                                         require.resolve('babel-plugin-named-asset-import'),
@@ -401,10 +400,10 @@ module.exports = function (webpackEnv) {
                                         'import',
                                         {
                                             libraryName: "antd",
-                                            libraryDirectory: "es",
+                                            libraryDirectory: "lib",
                                             style: true
                                         }
-                                    ]
+                                    ],
                                 ],
                                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -508,26 +507,54 @@ module.exports = function (webpackEnv) {
                         },
                         {
                             test: lessRegex,
-                            exclude: lessModuleRegex,
                             use: getStyleLoaders(
                                 {
                                     importLoaders: 2,
                                     sourceMap: isEnvProduction && shouldUseSourceMap,
-
                                 },
                                 'less-loader',
                                 {
-                                    modifyVars: {
-                                        '@primary-color': '#f9c700'
+                                    lessOptions: {
+                                        modifyVars: {
+                                            'primary-color': '#f9c700'
+                                        },
+                                        javascriptEnabled: true,
                                     }
                                 }
                             ),
-                            // Don't consider CSS imports dead code even if the
-                            // containing package claims to have no side effects.
-                            // Remove this when webpack adds a warning or an error for this.
-                            // See https://github.com/webpack/webpack/issues/6571
                             sideEffects: true,
                         },
+                        {
+                            test: lessModuleRegex,
+                            use: getStyleLoaders(
+                                {
+                                    importLoaders: 2,
+                                    sourceMap: isEnvProduction && shouldUseSourceMap,
+                                    modules: true,
+                                    getLocalIdent: getCSSModuleLocalIdent,
+                                },
+                                'less-loader',
+                            ),
+                        },
+                        // {
+                        //     test: lessRegex,
+                        //     exclude: lessModuleRegex,
+                        //     use: getStyleLoaders(
+                        //         {
+                        //             importLoaders: 2,
+                        //             sourceMap: isEnvProduction && shouldUseSourceMap,
+
+                        //         },
+                        //         'less-loader',
+                        //         {
+                        //             modifyVars: {
+                        //                 'primary-color': '#f9c700'
+                        //             },
+                        //             javascriptEnabled: true,
+                        //         }
+                        //     ),
+                        //     sideEffects: true,
+                        // },
                         // "file" loader makes sure those assets get served by WebpackDevServer.
                         // When you `import` an asset, you get its (virtual) filename.
                         // In production, they would get copied to the `build` folder.

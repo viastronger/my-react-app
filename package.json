@@ -103,7 +103,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "less": "^2.7.3",
-    "less-loader": "^5.0.0"
+    "less-loader": "^6.0.0"
   },
   "jest": {
     "roots": [

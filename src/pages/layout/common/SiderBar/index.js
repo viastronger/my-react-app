@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Icon as LegacyIcon } from '@ant-design/compatible'
+import { Layout, Menu } from 'antd'
 import { TwitterOutlined } from '@ant-design/icons'
-import { Menu, Layout } from 'antd'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { history } from '../../../../history'
@@ -12,7 +12,7 @@ import './index.less'
 const {
     Sider,
 } = Layout
-const { SubMenu } = Menu
+const { SubMenu, ItemGroup } = Menu
 
 const brandIcon = {
     fontSize: 40,
