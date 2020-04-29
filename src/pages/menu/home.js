@@ -13,13 +13,12 @@ import {
     Button,
     Modal,
 } from 'antd'
-import utils from '@/utils/index'
+import utils from '../../utils'
 import BaseForm from '../../components/baseForm'
 import MyTable from '../../components/myTable'
 import { homeTable, getList } from '../../api/index'
 
 const { pagination } = utils
-console.log(pagination)
 class ExampleAnimations extends React.Component {
     params = {
         page: 1,

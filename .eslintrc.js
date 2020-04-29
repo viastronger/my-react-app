@@ -65,6 +65,7 @@ module.exports = {
         "react/prefer-stateless-function": 0,
         "no-template-curly-in-string": "off",
         "react/jsx-one-expression-per-line": 0,
+        "import/no-unresolved": [2, { "ignore": ["^@/"] /* @ 是设置的路径别名*/ },],
     },
     "settings": {
         "react": {
