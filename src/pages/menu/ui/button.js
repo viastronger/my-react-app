@@ -1,5 +1,13 @@
 import React, { Component, Fragment } from 'react'
-import { Button, Card, Icon } from 'antd'
+import {
+    DownloadOutlined,
+    EditOutlined,
+    LeftOutlined,
+    PlusOutlined,
+    RightOutlined,
+    SearchOutlined,
+} from '@ant-design/icons'
+import { Button, Card } from 'antd'
 
 const ButtonGroup = Button.Group
 export default class ButtonUi extends Component {
@@ -12,10 +20,10 @@ export default class ButtonUi extends Component {
                     <Button type="dashed">按钮</Button>
                 </Card>
                 <Card title="图形按钮">
-                    <Button type="primary" shape="circle" icon="search" />
-                    <Button icon="plus">按钮</Button>
-                    <Button icon="edit">按钮</Button>
-                    <Button type="dashed" icon="download">按钮</Button>
+                    <Button type="primary" shape="circle" icon={<SearchOutlined />} />
+                    <Button icon={<PlusOutlined />}>按钮</Button>
+                    <Button icon={<EditOutlined />}>按钮</Button>
+                    <Button type="dashed" icon={<DownloadOutlined />}>按钮</Button>
                 </Card>
                 <Card title="loading按钮">
                     <Button type="primary" shape="circle" loading />
@@ -24,12 +32,12 @@ export default class ButtonUi extends Component {
                 <Card title="loading按钮">
                     <ButtonGroup>
                         <Button type="primary">
-                            <Icon type="left" />
+                            <LeftOutlined />
                             Go back
                         </Button>
                         <Button type="primary">
                             Go forward
-                            <Icon type="right" />
+                            <RightOutlined />
                         </Button>
                     </ButtonGroup>
                 </Card>

@@ -1,12 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+// import { Icon as LegacyIcon } from '@ant-design/compatible'
 import {
     Layout,
     Button,
-    Icon,
     Row,
     Col,
 } from 'antd'
+import {
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
+} from '@ant-design/icons'
 import { connect } from 'react-redux'
 import Tags from '../tags'
 import Breadcrumb from '../breadcrumb'
@@ -82,7 +86,8 @@ class Head extends React.Component {
                 <Row>
                     <Col span={12}>
                         <Button type="primary" onClick={toggleCollapsed} size="small">
-                            <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
+                            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined /> }
+                            {/* <LegacyIcon type={collapsed ? 'menu-unfold' : 'menu-fold'} /> */}
                         </Button>
                         {
                             !isMobile ? <Breadcrumb /> : null
@@ -99,7 +104,6 @@ class Head extends React.Component {
                 }
 
             </Header>
-
         )
     }
 }

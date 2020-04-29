@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
-import { Icon, Tabs } from 'antd'
+import { StepForwardOutlined } from '@ant-design/icons'
+import { Tabs } from 'antd'
 
 const { TabPane } = Tabs
 
@@ -18,7 +19,7 @@ export default class MyModal extends React.Component {
                     <TabPane
                         tab={(
                             <span>
-                                <Icon type="step-forward" />
+                                <StepForwardOutlined />
                                 Tab 2
                             </span>
                         )}

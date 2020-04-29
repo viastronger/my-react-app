@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Menu, Icon, Layout } from 'antd'
+import { Icon as LegacyIcon } from '@ant-design/compatible'
+import { Layout, Menu } from 'antd'
+import { TwitterOutlined } from '@ant-design/icons'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { history } from '../../../../history'
@@ -10,7 +12,7 @@ import './index.less'
 const {
     Sider,
 } = Layout
-const { SubMenu } = Menu
+const { SubMenu, ItemGroup } = Menu
 
 const brandIcon = {
     fontSize: 40,
@@ -65,7 +67,6 @@ class siderBar extends React.Component {
     }
 
     changeRoute = (e) => {
-        console.log(this.props.addTags)
         // history.push(`/${e.key}`)
         this.props.addTags(e)
         // 移动端，点击侧边栏后，隐藏侧边栏
@@ -81,7 +82,7 @@ class siderBar extends React.Component {
                         key={item.path ? item.path : item.id}
                         title={(
                             <span>
-                                <Icon type={item.iconType} />
+                                <LegacyIcon type={item.iconType} />
                                 <span>{item.title}</span>
                             </span>
                         )}
@@ -96,7 +97,7 @@ class siderBar extends React.Component {
                     title={item.title}
                 >
                     <NavLink to={item.path}>
-                        <Icon type={item.iconType} />
+                        <LegacyIcon type={item.iconType} />
                         <span>{item.title}</span>
                     </NavLink>
                 </Menu.Item>
@@ -131,7 +132,7 @@ class siderBar extends React.Component {
                         phoneCollapsed ? 'phoneCollapsed' : null].join(' ')}
                     collapsed={!isMobile ? collapsed : false}
                 >
-                    <Icon type="twitter" style={brandIcon} />
+                    <TwitterOutlined style={brandIcon} />
                     {!collapsed ? <div style={{ textAlign: 'center', marginBottom: 20 }}>Brand</div> : ''}
                     <Menu
                         onClick={this.changeRoute}
