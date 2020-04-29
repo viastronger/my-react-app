@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Icon as LegacyIcon } from '@ant-design/compatible'
 import { Layout, Menu } from 'antd'
-import { TwitterOutlined } from '@ant-design/icons'
+import * as Icon from '@ant-design/icons'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { history } from '../../../../history'
@@ -12,7 +12,7 @@ import './index.less'
 const {
     Sider,
 } = Layout
-const { SubMenu, ItemGroup } = Menu
+const { SubMenu } = Menu
 
 const brandIcon = {
     fontSize: 40,
@@ -82,7 +82,12 @@ class siderBar extends React.Component {
                         key={item.path ? item.path : item.id}
                         title={(
                             <span>
-                                <LegacyIcon type={item.iconType} />
+                                {/* <LegacyIcon type={item.iconType} /> */}
+                                {
+                                    React.createElement(
+                                        Icon[item.iconType],
+                                    )
+                                }
                                 <span>{item.title}</span>
                             </span>
                         )}
@@ -97,7 +102,12 @@ class siderBar extends React.Component {
                     title={item.title}
                 >
                     <NavLink to={item.path}>
-                        <LegacyIcon type={item.iconType} />
+                        {/* <LegacyIcon type={item.iconType} /> */}
+                        {
+                            React.createElement(
+                                Icon[item.iconType],
+                            )
+                        }
                         <span>{item.title}</span>
                     </NavLink>
                 </Menu.Item>
@@ -132,7 +142,7 @@ class siderBar extends React.Component {
                         phoneCollapsed ? 'phoneCollapsed' : null].join(' ')}
                     collapsed={!isMobile ? collapsed : false}
                 >
-                    <TwitterOutlined style={brandIcon} />
+                    <Icon.TwitterOutlined style={brandIcon} />
                     {!collapsed ? <div style={{ textAlign: 'center', marginBottom: 20 }}>Brand</div> : ''}
                     <Menu
                         onClick={this.changeRoute}

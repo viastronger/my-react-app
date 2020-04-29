@@ -2,43 +2,43 @@ const siderBar = [
     {
         path: '/home',
         id: '1',
-        iconType: 'windows',
+        iconType: 'WindowsOutlined',
         title: '首页',
     },
     {
         id: '2',
         path: '/ui',
-        iconType: 'user',
+        iconType: 'UserOutlined',
         title: '路由2',
         children: [
             {
                 path: '/ui/asf',
                 id: '2-1',
-                iconType: 'user',
+                iconType: 'UserOutlined',
                 title: '路由2-2',
                 children: [
                     {
                         path: '/ui/button',
                         id: '2-1-1',
-                        iconType: 'user',
+                        iconType: 'UserOutlined',
                         title: 'button',
                     },
                     {
                         path: '/ui/modal',
                         id: '2-1-2',
-                        iconType: 'user',
+                        iconType: 'UserOutlined',
                         title: 'modal',
                     },
                     {
                         path: '/ui/tab',
                         id: '2-1-3',
-                        iconType: 'user',
+                        iconType: 'UserOutlined',
                         title: 'tab',
                     },
                     {
                         path: '/ui/gallery',
                         id: '2-1-4',
-                        iconType: 'user',
+                        iconType: 'UserOutlined',
                         title: 'gallery',
                     },
                 ],
@@ -48,19 +48,19 @@ const siderBar = [
     {
         path: '/echarts',
         id: '3',
-        iconType: 'area-chart',
+        iconType: 'PieChartOutlined',
         title: '图表',
     },
     {
         path: '/form',
         id: '4',
-        iconType: 'laptop',
+        iconType: 'LaptopOutlined',
         title: 'form',
         children: [
             {
                 path: '/form/formLogin',
                 id: '4-1',
-                iconType: 'user',
+                iconType: 'UserOutlined',
                 title: 'formLogin',
             },
         ],
@@ -68,7 +68,7 @@ const siderBar = [
     {
         path: '/uedit',
         id: '5',
-        iconType: 'notification',
+        iconType: 'NotificationOutlined',
         title: '富文本',
     },
 ]
