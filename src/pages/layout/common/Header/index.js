@@ -22,8 +22,8 @@ const {
 } = Layout
 
 class Head extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             pos: '',
             weather: '',
@@ -86,7 +86,7 @@ class Head extends React.Component {
                 <Row>
                     <Col span={12}>
                         <Button type="primary" onClick={toggleCollapsed} size="small">
-                            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined /> }
+                            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                             {/* <LegacyIcon type={collapsed ? 'menu-unfold' : 'menu-fold'} /> */}
                         </Button>
                         {

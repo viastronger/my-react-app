@@ -16,6 +16,7 @@ import {
 import utils from '../../utils'
 import BaseForm from '../../components/baseForm'
 import MyTable from '../../components/myTable'
+import Portals from '../../components/portals'
 import { homeTable, getList } from '../../api/index'
 
 const { pagination } = utils
@@ -192,6 +193,10 @@ class ExampleAnimations extends React.Component {
                             <BaseForm formList={this.formList} layout="inline" formSubmit={this.baseFormSubmit} />
                         </Card>
                     </Col>
+                </Row>
+                <Row>
+                    <div id="box" />
+                    <Portals> oaidf</Portals>
                 </Row>
                 <Row gutter={16}>
                     <Col className="gutter-row" md={24}>

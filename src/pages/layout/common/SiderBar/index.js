@@ -124,7 +124,6 @@ class siderBar extends React.Component {
                         />
                     ) : null
                 }
-                <div id="box" />
                 <Sider
                     width={siderWidth}
                     trigger={null}

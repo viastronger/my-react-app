@@ -52,7 +52,7 @@ class layout extends React.Component {
             isMobile,
         } = this.props
         const distance = tags.length > 0 && !isMobile ? 90 : 60
-        const obj = {
+        const containerStyle = {
             padding: '0 20px 20px',
             minHeight: `calc(100vh - ${distance}px)`,
             transition: 'all .5s',
@@ -73,7 +73,7 @@ class layout extends React.Component {
                         toggleCollapsed={this.toggleCollapsed}
                         collapsed={this.state.collapsed}
                     />
-                    <div style={obj}>
+                    <div style={containerStyle}>
                         <TransitionGroup style={{ position: 'relative' }}>
                             <CSSTransition
                                 key={location.pathname}
