@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { StepForwardOutlined } from '@ant-design/icons'
-import { Tabs } from 'antd'
+import { Tabs, Row } from 'antd'
+import Portals from '../../../components/portals'
 
 const { TabPane } = Tabs
 
@@ -14,7 +15,8 @@ export default class MyModal extends React.Component {
             <Fragment>
                 <Tabs defaultActiveKey="1" onChange={this.callback}>
                     <TabPane tab="Tab 1" key="1">
-                        Content of Tab Pane 1
+                        <div id="box" />
+                        <Portals> Portals</Portals>
                     </TabPane>
                     <TabPane
                         tab={(

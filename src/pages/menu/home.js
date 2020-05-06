@@ -16,7 +16,8 @@ import {
 import utils from '../../utils'
 import BaseForm from '../../components/baseForm'
 import MyTable from '../../components/myTable'
-import Portals from '../../components/portals'
+import DataProvider from '../../components/renderProps'
+import Cat from '../../components/renderProps/cat'
 import { homeTable, getList } from '../../api/index'
 
 const { pagination } = utils
@@ -94,6 +95,21 @@ class ExampleAnimations extends React.Component {
     }
 
     componentDidMount() {
+        // const data = [1, 2, 3]
+        // const data = { a: { b: { c: 1 } } }
+        // const p = new Proxy(data, {
+        //     get(target, key, receiver) {
+        //         console.log(target, key)
+        //         console.log(Reflect.get(target, key))
+        //         return Reflect.get(target, key)
+        //     },
+        //     set(target, key, value, receiver) {
+        //         target[key] = value
+        //         return true
+        //     },
+        // })
+        // p.push(4)
+        // console.log(p.a.b.c)
         this.getTableList()
         // console.log(this.a)
         // console.log(this.b)
@@ -195,8 +211,13 @@ class ExampleAnimations extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <div id="box" />
-                    <Portals> oaidf</Portals>
+                    <Col>
+                        <DataProvider>
+                            {
+                                (data) => <Cat target={data.target} />
+                            }
+                        </DataProvider>
+                    </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col className="gutter-row" md={24}>
