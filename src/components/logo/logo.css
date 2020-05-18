@@ -24,11 +24,11 @@
 }
 
 .logo-gather-demo-wrapper {
-  position: absolute;
-  z-index: 10;
-  top: 0;
+  /* position: absolute; */
+  /* z-index: 10; */
+  /* top: 0; */
   /*margin:0 auto;*/
-  left: 0;
+  /* left: 0; */
   background: transparent;
   overflow: hidden;
   height: 100%;
@@ -45,12 +45,12 @@
 
 .logo-gather-demo-wrapper .right-side {
   width: 1038px;
-  height: 280px;
-  position: absolute;
-  right: 0;
+  height: 340px;
+  position: relative;
+  /* right: 0;
   top: -60px;
   bottom: 0;
-  left: 0;
+  left: 0; */
   margin: auto;
 }
 

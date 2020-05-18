@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 // import { message } from 'antd'
 import QueuiAnim from 'rc-queue-anim'
 import { brandName } from '../../config'
-// import Logo from '../../components/logo/logo'
-
+import Logo from '../../components/logo/logo'
+import '../../less/login.less'
 
 class Login extends Component {
     // 初始化页面常量 绑定事件方法
@@ -19,7 +19,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        console.log('mount')
+        // console.log('mount')
     }
 
     // #region 收缩业务代码功能
@@ -47,12 +47,12 @@ class Login extends Component {
                                 }
                             </QueuiAnim>
                         </div>
-                        {/* <Logo /> */}
+                        <Logo />
                     </div>
                     <QueuiAnim component="div" className="login-footer" delay={600} type="bottom" key="footer">
                         {
                             this.state.show ? [
-                                <p key="0"> 浙江七巧板信息科技股份有限公司 </p>,
+                                <p key="0"> 本站由别玩了去看书提供技术支持 </p>,
                             ] : null
                         }
                     </QueuiAnim>

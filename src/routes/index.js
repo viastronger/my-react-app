@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { history } from '../history'
 import { isLoginMethod } from '../config/permission'
 import AuthorizedRoute from '../pages/AuthorizedRoute'
-import Common from '../pages/common'
+import Common from '../pages/common/common'
 import Layout from '../pages/layout'
 import login from '../pages/login'
 

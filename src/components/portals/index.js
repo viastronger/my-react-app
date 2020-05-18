@@ -84,12 +84,12 @@ const UserDisplay = () => {
             <ChildMemo
                 name={
                     useMemo(() => ({
-                        name,
+                        newName: name,
                         count,
                     }), [name])
                 }
                 clickHandle={useCallback((newName) => setName(newName), [])}
-                // 这里使用了useCallback优化了 传递给子组件的函数，只初始化一次这个函数，下次不产生新的函数
+            // 这里使用了useCallback优化了 传递给子组件的函数，只初始化一次这个函数，下次不产生新的函数
             />
             <button type="button" onClick={() => setUser({ name: 'name changed' })}>
                 Click me

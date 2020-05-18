@@ -16,7 +16,7 @@ import {
 import utils from '../../utils'
 import BaseForm from '../../components/baseForm'
 import MyTable from '../../components/myTable'
-import DataProvider from '../../components/renderProps'
+import RenderProps from '../../components/renderProps'
 import Cat from '../../components/renderProps/cat'
 import { homeTable, getList } from '../../api/index'
 
@@ -212,11 +212,15 @@ class ExampleAnimations extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <DataProvider>
+                        {/*
+                            renderProps可以在 标签attributes列表中，也可以在标签内部，
+                            在renderProps组件内部会始终渲染传递过去的内容/子组件，在这里可以判断需要渲染哪个组件/内容
+                        */}
+                        <RenderProps>
                             {
                                 (data) => <Cat target={data.target} />
                             }
-                        </DataProvider>
+                        </RenderProps>
                     </Col>
                 </Row>
                 <Row gutter={16}>

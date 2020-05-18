@@ -1,1 +1,1 @@
-export const brandName = 'brand'
+export const brandName = 'React'
