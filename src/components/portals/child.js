@@ -7,7 +7,7 @@ export default class Child extends React.Component {
         console.log(this.props)
         return (
             <div>
-                我是一个子组件*{this.props.name.newName}*
+                使用memo：我是一个子组件*{this.props.name.newName}*
                 <button type="button" onClick={this.props.clickHandle.bind(null, '小明')}>按钮</button>
             </div>
         )

@@ -1,17 +1,21 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import {
     Form,
     Input,
     Button,
     Checkbox,
 } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import {
+    UserOutlined,
+    LockOutlined,
+} from '@ant-design/icons'
 import QueuiAnim from 'rc-queue-anim'
 import { brandName } from '../../config'
 import Logo from '../../components/logo/logo'
-import '../../less/login.less'
+import './login.less'
 
 class Login extends Component {
     // 初始化页面常量 绑定事件方法
@@ -22,7 +26,14 @@ class Login extends Component {
             isCertificates: false,
             show: true,
         }
+        this.onFinish = this.onFinish.bind(this)
     }
+
+    // componentWillMount() {
+    //     if (this.props.isLogin) {
+    //         this.props.history.replace('/admin')
+    //     }
+    // }
 
     componentDidMount() {
         // console.log('mount')
@@ -30,6 +41,8 @@ class Login extends Component {
 
     onFinish = (values) => {
         console.log('Success:', values)
+        localStorage.setItem('userInfo', JSON.stringify(values))
+        this.props.history.replace('/admin')
     }
 
     onFinishFailed = (errorInfo) => {
@@ -44,6 +57,11 @@ class Login extends Component {
     // #endregion
 
     render() {
+        const initialValues = {
+            remember: true,
+            username: 'admin',
+            password: '123456',
+        }
         return (
             <div className="login-container">
                 {/* <div className="extraLink" /> */}
@@ -64,7 +82,7 @@ class Login extends Component {
                     </div>
                     <Form
                         className="login-form"
-                        initialValues={{ remember: true }}
+                        initialValues={initialValues}
                         onFinish={this.onFinish}
                         onFinishFailed={this.onFinishFailed}
                     >
@@ -99,7 +117,7 @@ class Login extends Component {
                             <Button type="primary" htmlType="submit" className="login-form-button">
                                 登录
                             </Button>
-                            Or <a href="">立即注册(并没有注册功能)!</a>
+                            {/* Or <a href="">立即注册(并没有注册功能)!</a> */}
                         </Form.Item>
                     </Form>
                     <QueuiAnim component="div" className="login-footer" delay={600} type="bottom" key="footer">
@@ -115,5 +133,16 @@ class Login extends Component {
     }
 }
 
+Login.propTypes = {
+    // isLogin: PropTypes.bool.isRequired,
+    history: PropTypes.objectOf(PropTypes.any).isRequired,
+}
 
-export default connect(null, null)(Login)
+
+function mapStateToProps(state) {
+    return {
+        isLogin: state.setting.isLogin,
+    }
+}
+
+export default connect(mapStateToProps, null)(Login)

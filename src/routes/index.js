@@ -3,13 +3,12 @@ import {
     Route,
     Switch,
     Router,
-    Redirect,
 } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { history } from '../history'
 import { isLoginMethod } from '../config/permission'
-import AuthorizedRoute from '../pages/AuthorizedRoute'
+// import AuthorizedRoute from '../pages/AuthorizedRoute'
 import Common from '../pages/common/common'
 import Layout from '../pages/layout'
 import login from '../pages/login'
@@ -23,7 +22,8 @@ class routes extends Component {
                     <Switch>
                         <Route path="/login" component={login} render={isLoginMethod(isLogin)} />
                         <Route path="/common" component={Common} />
-                        <AuthorizedRoute path="/" component={Layout} />
+                        <Route path="/" component={Layout} />
+                        {/* <AuthorizedRoute path="/" component={Layout} /> */}
                     </Switch>
                 </Router>
             </div>

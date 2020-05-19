@@ -2,7 +2,7 @@
 const initalState = {
     isMobile: false,
     pending: false,
-    isLogin: true,
+    isLogin: !!localStorage.getItem('userInfo'),
     width: 992,
     siderWidth: 150,
     ak: 'O2gylRqG1UcDNp6zTOQvc3kCBCdcTNRF',
