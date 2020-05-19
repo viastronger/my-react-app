@@ -16,8 +16,6 @@ import {
 import utils from '../../utils'
 import BaseForm from '../../components/baseForm'
 import MyTable from '../../components/myTable'
-import RenderProps from '../../components/renderProps'
-import Cat from '../../components/renderProps/cat'
 import { homeTable, getList } from '../../api/index'
 
 const { pagination } = utils
@@ -95,21 +93,6 @@ class ExampleAnimations extends React.Component {
     }
 
     componentDidMount() {
-        // const data = [1, 2, 3]
-        // const data = { a: { b: { c: 1 } } }
-        // const p = new Proxy(data, {
-        //     get(target, key, receiver) {
-        //         console.log(target, key)
-        //         console.log(Reflect.get(target, key))
-        //         return Reflect.get(target, key)
-        //     },
-        //     set(target, key, value, receiver) {
-        //         target[key] = value
-        //         return true
-        //     },
-        // })
-        // p.push(4)
-        // console.log(p.a.b.c)
         this.getTableList()
         // console.log(this.a)
         // console.log(this.b)
@@ -208,19 +191,6 @@ class ExampleAnimations extends React.Component {
                         <Card ref={this.a}>
                             <BaseForm formList={this.formList} layout="inline" formSubmit={this.baseFormSubmit} />
                         </Card>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        {/*
-                            renderProps可以在 标签attributes列表中，也可以在标签内部，
-                            在renderProps组件内部会始终渲染传递过去的内容/子组件，在这里可以判断需要渲染哪个组件/内容
-                        */}
-                        <RenderProps>
-                            {
-                                (data) => <Cat target={data.target} />
-                            }
-                        </RenderProps>
                     </Col>
                 </Row>
                 <Row gutter={16}>

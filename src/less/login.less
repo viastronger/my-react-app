@@ -2,36 +2,40 @@
 @text-color-bold: #333;
 @space-big: 100px;
 @text-color-secondary: #999;
+@primaryColor: #f9c700;
 
 .flexcolumn {
   display: flex;
-  flex: 1;
   flex-direction: column;
+  flex: 1;
 }
 
-// .root {
-// height: 100%;
 .login-container {
   .flexcolumn;
-  height: 50vh; /* background: url(../images/bg.jpg) no-repeat 0 0; */
+  // height: 50vh;
+  /* background: url(../images/bg.jpg) no-repeat 0 0; */
   background-size: cover;
-  .extraLink {
-    position: absolute;
-    z-index: 999;
-    right: @space-big;
-    top: @space-big;
-    display: none;
-    a {
-      color: #eee;
-      margin-left: @space-big;
-      font-size: 16px;
-      &:hover {
-        color: #fff;
-      }
-    }
+  .main {
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
   }
+  // .extraLink {
+  //   position: absolute;
+  //   z-index: 999;
+  //   right: @space-big;
+  //   top: @space-big;
+  //   display: none;
+  //   a {
+  //     color: #eee;
+  //     margin-left: @space-big;
+  //     font-size: 16px;
+  //     &:hover {
+  //       color: #fff;
+  //     }
+  //   }
+  // }
   .login-header {
-    flex: 3;
     background: #2d333e;
     color: #fff;
     display: flex;
@@ -40,6 +44,7 @@
     font-size: 36px;
     letter-spacing: 10px;
     position: relative;
+    width: 100%;
     .slogan {
       position: absolute;
       z-index: 1000;
@@ -66,60 +71,16 @@
       }
     }
   }
-  .login-main {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .ant-row {
-      .ant-col-8 {
-        .ant-form-item {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          .ant-form-item-control-wrapper {
-            width: 60%;
-            .ant-form-item-control {
-              text-align: right;
-              .ant-form-explain {
-                text-align: left;
-              }
-              .ant-input-group-wrapper {
-                width: 100%;
-                .ant-input-group-addon {
-                  font-size: 16px;
-                  color: #000;
-                }
-              }
-              .ant-btn {
-                width: 100%;
-              }
-              > a {
-                color: @text-color-bold;
-                font-weight: bold;
-              }
-            }
-          }
-        }
-      }
-    }
+  .login-form{
+    width: 300px;
   }
   .login-footer {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     color: @text-color-secondary;
-    flex-direction: column;
     font-size: 14px;
-    // display: none;
-    a {
-      align-self: flex-end;
-      margin-right: 5%;
-      color: @text-color-bold;
-      font-weight: bold;
+    span {
+      color: @primaryColor;
+      cursor: pointer;
     }
   }
 }
-// }

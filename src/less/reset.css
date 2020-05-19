@@ -46,8 +46,9 @@ select,
 textarea {
   margin: 0;
   padding: 0;
-  font-family: "Microsoft YaHei", "Hiragino Sans GB", Helvetica, Arial,
-    "Lucida Grande", sans-serif;
+  font-family: "Microsoft YaHei";
+  /* font-family: "Microsoft YaHei", "Hiragino Sans GB", Helvetica, Arial,
+    "Lucida Grande", sans-serif; */
   border: none;
   outline: none;
   background-color: transparent;
